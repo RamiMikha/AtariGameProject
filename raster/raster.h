@@ -3,6 +3,9 @@
 
 #include "types.h"
 
-void bird(UINT *base, int x, int y);
+void bird(UINT64 *base, int x, int y);
+void pipe();
+void pipe_opening();
+void clear_screen();
 
 #endif
