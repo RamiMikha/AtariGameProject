@@ -1,6 +1,6 @@
 #include "raster.h"
 
-void plot_bitmap_32(ULONG32 *base, int x, int y, ULONG32 *bitmap, unsigned int height)
+void plot_bitmap_32(UINT32 *base, int x, int y, UINT32 *bitmap, unsigned int height)
 {
     int screenWidth = 20;
 
@@ -14,10 +14,10 @@ void plot_bitmap_32(ULONG32 *base, int x, int y, ULONG32 *bitmap, unsigned int h
 
 }
 
-void clear_screen(ULONG32 *base){
+void clear_screen(UINT32 *base){
 
 	int longs_per_screen = 8000;
-  	UINT16 *offset = base;
+  	UINT32 *offset = base;
   	int x = 0;
 
   	while (x++ <longs_per_screen)
