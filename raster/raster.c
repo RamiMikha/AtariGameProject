@@ -65,7 +65,7 @@ void fill_region(UINT32 *base, int x1, int x2, int y1, int y2)
 			*(base + offset) = 1;
 			i++;
 		}
-		j += screenWidth;
+		j++;
 	}
 
 }
