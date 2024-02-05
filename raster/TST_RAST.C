@@ -3,10 +3,11 @@
 
 int main()
 {
-	void *base = Physbase();
+	UINT32 *base = Physbase();
 
-	plot_something_1(base, 100, 100);
-	plot_something_2(base, 200, 200);
+	clear_screen(base);
+	fill_region(base, 0, 639, 300, 399);
+	
 
 	return 0;
 }

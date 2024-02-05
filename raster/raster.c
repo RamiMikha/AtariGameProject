@@ -21,7 +21,6 @@ void plot_bitmap_8(UINT8 *base, int x, int y, UINT8 *bitmap, unsigned int height
 {
 	int screenWidth = 80;
 	int bytes_per_screen = 32000;
-
 	int offset = (y * screenWidth) + (x >> 3);
 
 	int i;
@@ -61,8 +60,8 @@ void fill_region(UINT32 *base, int x1, int x2, int y1, int y2)
 		int i = x1;
 		while (i < x2 && i < 640)
 		{
-			int offset = (j * screenWidth) + (x1/32);
-			*(base + offset) = 1;
+			int offset = (j * screenWidth) + (i/32);
+			*(base + offset) = 0xFFFFFFFF;
 			i++;
 		}
 		j++;
