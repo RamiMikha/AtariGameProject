@@ -8,7 +8,12 @@ typedef struct {
 
 typedef struct {
   unsigned x,y
-  int delta_x
+  int delta_x;
 } Pipes;
+
+typedef struct {
+  unsigned x,y;
+} Ground;
+
 
 #endif
