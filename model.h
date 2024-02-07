@@ -12,7 +12,7 @@ typedef struct {
 } Pipes;
 
 typedef struct {
-  unsigned x,y;
+  unsigned x1,y1,x2,y2;
 } Ground;
 
 
