@@ -8,7 +8,7 @@ void move_bird(Bird *bird);
 
 void move_pipe(Pipes *pipe);
 
-void spawn_pipe();
+void spawn_pipe(Pipes *pipe);
 
 
 
