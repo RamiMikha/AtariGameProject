@@ -4,17 +4,17 @@
 #include "model.h"
 
 /* Synchronized Events*/
-void move_bird(Bird *bird);
+void bird_gravity(Bird *bird);
 
-void move_pipe(Pipes *pipe);
+void pipe_move(Pipes *pipe);
 
-void spawn_pipe(Pipes *pipe);
+void pipe_spawn(Pipes *pipe);
 
 
 
 
 /* Unsynchronized Events*/
-void flap_bird(Bird *bird);
+void bird_flap(Bird *bird);
 
 
 
