@@ -1,3 +1,4 @@
+#include <osbind.h>
 #include "events.h"
 
 
@@ -23,15 +24,20 @@ void pipe_spawn(Pipes *pipe){
 
 /* Unsynchronized Events*/
 void bird_flap(Bird *bird){
-    /*if 'space' is pressed down*/
+    int ch;
+    ch = c_necin();
+    while(ch = ' '){
         move_bird(bird, FLAP);
+        ch = c_necin();
+    }
 }
 
 
 
 /* Condition-Based Events*/
 void collision(Bird *bird, Pipes *pipe, Ground *ground){
+
     if (check_collision(bird, pipe, ground)){
-        /*game ends?*/
+        /*game ends*/
     }
 }
