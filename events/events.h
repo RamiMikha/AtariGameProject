@@ -3,6 +3,10 @@
 
 #include "model.h"
 
+#define GRAVITY 1
+#define PIPE_SPEED -1
+#define FLAP -5
+
 /* Synchronized Events*/
 void bird_gravity(Bird *bird);
 
