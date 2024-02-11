@@ -1,10 +1,12 @@
 #include "model.h"
 
-void move_bird (Bird *bird) {
+void move_bird (Bird *bird, int move_value) {
+    bird->delta_y = move_value;
     bird->y += bird->delta_y;
 }
 
-void move_pipe (Pipes *pipe) {
+void move_pipe (Pipes *pipe, int move_value) {
+    pipe->delta_x = move_value;
     pipe->x += pipe->delta_x;
 }
 
