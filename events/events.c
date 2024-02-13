@@ -16,7 +16,8 @@ void pipe_spawn(Pipes *pipe){
     pipe->x = 640;
     pipe->opening_gap = 96;
 
-    /*pipe->opening_height = random? */
+    /*'%200 + 50' limits the height to be between 50 to 250 pixels down on screen */
+    pipe->opening_height = random() % 200 + 50;
   
 }
 
@@ -24,12 +25,7 @@ void pipe_spawn(Pipes *pipe){
 
 /* Unsynchronized Events*/
 void bird_flap(Bird *bird){
-    int ch;
-    ch = c_necin();
-    while(ch = ' '){
-        move_bird(bird, FLAP);
-        ch = c_necin();
-    }
+        move_bird(bird, FLAP);   
 }
 
 
@@ -38,6 +34,8 @@ void bird_flap(Bird *bird){
 void collision(Bird *bird, Pipes *pipe, Ground *ground){
 
     if (check_collision(bird, pipe, ground)){
-        /*game ends*/
+        clear_screen();
+        /*this is where the game normally ends but since we do not have score screen yet this will be added later*/
+
     }
 }
