@@ -30,7 +30,7 @@ Purpose:
 Inputs: 
    bird - pointer to the bird object to be moved
    move_value - amount of which the bird moves vertically
-//------------------------------------------------------------*/
+------------------------------------------------------------*/
 
 void move_bird (Bird *bird, int move_value);
 
@@ -43,7 +43,7 @@ Purpose:
 Inputs: 
    pipe - pointer to the pipe object to be moved
    move_value - amount of which the pipes moves horizontally
-//------------------------------------------------------------*/
+------------------------------------------------------------*/
 
 void move_pipe (Pipes *pipe, int move_value);
 
