@@ -47,14 +47,12 @@ void fill_region(UINT32 *base, int x1, int x2, int y1, int y2, int color)
 		int i = x1;
 		while (i < x2 && i < 640) {
 			int offset = (j * screenWidth) + (i/32);
-			if (color == 0){
+			if (color == 0) {
 				*(base + offset) = 0x00000000;
 			}
-			else
-			{
+			else {
 				*(base + offset) = 0xFFFFFFFF;
 			}
-			
 			i++;
 		}
 		j++;
