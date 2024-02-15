@@ -18,7 +18,7 @@ void render_pipe(Pipes *pipe, UINT32 *base)
 
     while(pipe->y < pipe->opening_height)
     {
-        plot_bitmap_32(base, pipe->x, pipe->y, pipe_section_bitmap, PIPE_SECTION_HEIGHT); /*To do: decide ons section height and create bitmap*/
+        plot_bitmap_32(base, pipe->x, pipe->y, pipe_section_bitmap, PIPE_SECTION_HEIGHT); /*To do: decide on section height and create bitmap*/
         pipe->y += PIPE_SECTION_HEIGHT;
     }
 
@@ -33,15 +33,13 @@ void render_pipe(Pipes *pipe, UINT32 *base)
 
 void render_pipe_opening(UINT32 *base, int opening_size, int x, int y)
 {
-    fill_region(base, x, x + PIPE_WIDTH, y, y + opening_size); /*changing fill region to be able to set with values with 1 or 0 */
+    fill_region(base, x, x + PIPE_WIDTH, y, y + opening_size, 0); 
 }
 
 void render_ground(UINT32 *base, const Ground *ground) 
 {
-    fill_region(base, ground->x1, ground->x2, ground->y1, ground->y2);
+    fill_region(base, ground->x1, ground->x2, ground->y1, ground->y2, 1);
 }
-{
 
-}
 
 void render_score();
