@@ -6,6 +6,7 @@
 #define PIPE_WIDTH 32
 #define PIPE_HEIGHT 640
 #define PIPE_OPENING_SIZE 96
+#define PIPE_SECTION_HEIGHT 32
 
 typedef struct {
   unsigned int x,y;

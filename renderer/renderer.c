@@ -1,6 +1,4 @@
 #include "renderer.h"
-#include "model.h"
-#include "raster.h"
 
 
 void render();
@@ -16,7 +14,7 @@ void render_pipe(Pipes *pipe, UINT32 *base)
     we can have a while loop to print the parts until reaching pipe->opening_height
     then it prints the opening(lines of zeros) then prints more pipe square parts until it reacher ground */
 
-    while(pipe->y < pipe->opening_height)
+    while(pipe->y < GROUND_Y1) /*To do: decide on ground y*/
     {
         plot_bitmap_32(base, pipe->x, pipe->y, pipe_section_bitmap, PIPE_SECTION_HEIGHT); /*To do: decide on section height and create bitmap*/
         pipe->y += PIPE_SECTION_HEIGHT;
@@ -24,11 +22,6 @@ void render_pipe(Pipes *pipe, UINT32 *base)
 
     render_pipe_opening(base, PIPE_OPENING_SIZE, pipe->x, pipe->y);
 
-    while(pipe->y < GROUND_Y) /*To do: decide on ground y value*/
-    {
-        plot_bitmap_32(base, pipe->x, pipe->y, pipe_section_bitmap, PIPE_SECTION_HEIGHT); 
-        pipe->y += PIPE_SECTION_HEIGHT;
-    }
 }
 
 void render_pipe_opening(UINT32 *base, int opening_size, int x, int y)
