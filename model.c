@@ -20,7 +20,7 @@ int check_collision(Bird *bird, Pipes *pipe, Ground *ground) {
 
     // pipe collision
     if (bird->x < pipe->x + PIPE_WIDTH && bird->x + BIRD_WIDTH > pipe->x) {
-        if (bird->y < pipe->opening_height || bird->y + BIRD_HEIGHT > pipe->opening_height + pipe->opening_gap) {
+        if (bird->y < pipe->opening_height || bird->y + BIRD_HEIGHT > pipe->opening_height + PIPE_OPENING_SIZE) {
             collision_bool = 1; 
         }
     }

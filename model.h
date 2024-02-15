@@ -5,6 +5,7 @@
 #define BIRD_HEIGHT 32
 #define PIPE_WIDTH 32
 #define PIPE_HEIGHT 640
+#define PIPE_OPENING_SIZE 96
 
 typedef struct {
   unsigned int x,y;
@@ -13,7 +14,7 @@ typedef struct {
 
 typedef struct {
   unsigned int x,y;
-  unsigned int opening_height, opening_gap;
+  unsigned int opening_height;
   int delta_x;
 } Pipes;
 
