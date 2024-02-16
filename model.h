@@ -26,9 +26,8 @@ typedef struct {
 
 
 typedef struct {
-  Bird bird;
-  Pipes pipe;
-
+  Bird *bird;
+  Pipes *pipe;
 } Model;
 
 /*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
