@@ -19,6 +19,11 @@ void pipe_spawn(Pipes *pipe) {
     pipe->opening_height = random() % 200 + 50;
 }
 
+void bird_spawn(Bird *bird) {
+    bird->x = 100;
+    bird->y = 100;
+}
+
 /* Unsynchronized Events*/
 
 void bird_flap(Bird *bird) {
