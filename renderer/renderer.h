@@ -2,7 +2,11 @@
 Team Members: Rami Mikha & Jarod Dacocos
 
 The functions in this file are responsible for rendering the 
-game's objects using the raster graphics library.
+game's objects using the raster graphics library in the "render"
+module. Each object is then rendered together at the same time 
+using a master render function. The data structures in this file
+are arrays responsible for drawing the bitmap of the bird and the
+pipe.
 ------------------------------------------------------------*/ 
 
 #ifndef RENDERER_H
