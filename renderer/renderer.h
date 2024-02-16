@@ -1,3 +1,10 @@
+/*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+Team Members: Rami Mikha & Jarod Dacocos
+
+The functions in this file are responsible for rendering the 
+game's objects using the raster graphics library.
+------------------------------------------------------------*/ 
+
 #ifndef RENDERER_H
 #define RENDERER_H
 
