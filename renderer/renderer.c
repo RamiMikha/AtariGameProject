@@ -2,9 +2,9 @@
 
 
 void render(UINT32 *base, Model *model) {
-    render_bird();
-    render_pipe();
-    render_ground();
+    render_bird(base, model->bird);
+    render_pipe(base, model->pipe);
+    render_ground(base);
 }
 
 
