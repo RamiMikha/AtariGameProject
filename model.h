@@ -7,6 +7,11 @@
 #define PIPE_HEIGHT 640
 #define PIPE_OPENING_SIZE 96
 #define PIPE_SECTION_HEIGHT 32
+#define GROUND_Y1 300
+#define GROUND_Y2 400
+#define GROUND_X1 0
+#define GROUND_X2 640
+
 
 typedef struct {
   unsigned int x,y;
@@ -19,14 +24,11 @@ typedef struct {
   int delta_x;
 } Pipes;
 
-typedef struct {
-  unsigned x1,y1,x2,y2;
-} Ground;
 
 typedef struct {
   Bird bird;
   Pipes pipe;
-  Ground ground;
+
 } Model;
 
 /*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

@@ -30,8 +30,8 @@ void render_pipe_opening(UINT32 *base, int opening_size, int x, int y) {
     fill_region(base, x, x + PIPE_WIDTH, y, y + opening_size, 0); 
 }
 
-void render_ground(UINT32 *base, const Ground *ground) {
-    fill_region(base, ground->x1, ground->x2, ground->y1, ground->y2, 1);
+void render_ground(UINT32 *base) {
+    fill_region(base, GROUND_X1, GROUND_X2, GROUND_Y1, GROUND_Y2, 1);
 }
 
 
