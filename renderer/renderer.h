@@ -1,8 +1,10 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "model.h"
-#include "raster.h"
+#include <osbind.h>
+#include <stdlib.h>
+#include "..\model.h"
+#include "..\raster\raster.h"
 
 const UINT32 flappy_bitmap[BIRD_HEIGHT] = {
   0x00000000, 
@@ -87,7 +89,7 @@ Inputs:
    model - pointer to the model object containing the bird and pipes objects
 ------------------------------------------------------------*/
 
-void render(UINT32 *base, Model *model);
+void render(UINT32 *base, Model model);
 
 /*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 Function Name: render_bird                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
@@ -152,6 +154,6 @@ Inputs:
    base - pointer to the base address of the frame buffer
 ------------------------------------------------------------*/
 
-void render_score(UINT8 *base,);
+/*void render_score(UINT8 *base,);*/
 
 #endif

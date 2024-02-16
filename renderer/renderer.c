@@ -1,9 +1,20 @@
 #include "renderer.h"
 
 
-void render(UINT32 *base, Model *model) {
-    render_bird(base, model->bird);
-    render_pipe(base, model->pipe);
+int main() {
+    UINT32 *base = Physbase();
+    Model model;
+
+    model.bird.x = 100;
+    model.bird.y = 100;
+    render(base, model);
+    return 0;
+
+}
+void render(UINT32 *base, Model model) {
+    clear_screen(base);
+    render_bird(base, &model.bird);
+    render_pipe(base, &model.pipe);
     render_ground(base);
 }
 
