@@ -81,7 +81,7 @@ Inputs:
    ground - pointer to the ground object
 ------------------------------------------------------------*/
 
-void collision(Bird *bird, Pipes *pipe, Ground *ground);
+void collision(Bird *bird, Pipes *pipe);
 
 
 

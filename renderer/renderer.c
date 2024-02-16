@@ -13,12 +13,8 @@ void render_bird(UINT32 *base, Bird *bird) {
 }
 
 void render_pipe(UINT32 *base, Pipes *pipe) {
-    /*possible logic: if we have the pipe bitmap be smaller squares of the pipe
-    we can have a while loop to print the parts until reaching pipe->opening_height
-    then it prints the opening(lines of zeros) then prints more pipe square parts until it reacher ground */
-
-    while(pipe->y < GROUND_Y1) { /*To do: decide on ground y*/
-        plot_bitmap_32(base, pipe->x, pipe->y, pipe_section_bitmap, PIPE_SECTION_HEIGHT); /*To do: decide on section height and create bitmap*/
+    while(pipe->y < GROUND_Y1) { 
+        plot_bitmap_32(base, pipe->x, pipe->y, pipe_section_bitmap, PIPE_SECTION_HEIGHT);
         pipe->y += PIPE_SECTION_HEIGHT;
     }
 

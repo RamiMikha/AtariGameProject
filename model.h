@@ -74,6 +74,6 @@ Outputs:
                     otherwise returns '0'.
 ------------------------------------------------------------*/
 
-int check_collision (Bird *bird, Pipes *pipe, Ground *ground);
+int check_collision (Bird *bird, Pipes *pipe);
 
 #endif

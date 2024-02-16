@@ -10,11 +10,11 @@ void move_pipe (Pipes *pipe, int move_value) {
     pipe->x += pipe->delta_x;
 }
 
-int check_collision(Bird *bird, Pipes *pipe, Ground *ground) {
+int check_collision(Bird *bird, Pipes *pipe) {
     int collision_bool = 0;
 
     // ground collision
-    if (bird->y >= ground->y1) {
+    if (bird->y >= GROUND_Y1) {
         collision_bool = 1;
     }
 

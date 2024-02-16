@@ -32,9 +32,9 @@ void bird_flap(Bird *bird) {
 
 /* Condition-Based Events*/
 
-void collision(Bird *bird, Pipes *pipe, Ground *ground) {
+void collision(Bird *bird, Pipes *pipe) {
 
-    if (check_collision(bird, pipe, ground)){
+    if (check_collision(bird, pipe)){
         clear_screen();
         /*this is where the game normally ends but since we do not have score screen yet this will be added later*/
     }
