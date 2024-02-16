@@ -66,7 +66,6 @@ Purpose:
 Inputs: 
    bird - pointer to the bird object
    pipe - pointer to the pipe object
-   ground - pointer to the ground object
 
 Outputs:
    collision_bool - flag that returns '1' if collision is detected
