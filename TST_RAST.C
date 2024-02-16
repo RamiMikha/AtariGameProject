@@ -1,5 +1,5 @@
 #include <osbind.h>
-#include "raster.h"
+#include "raster\raster.h"
 
 /*For testing Purposes*/
 const UINT32 flappy_bitmap[32] = {
@@ -52,7 +52,7 @@ int main()
 
 	clear_screen(base);
 
-	fill_region(base, 0, 639, 300, 399);
+	fill_region(base, 0, 639, 300, 399,1);
 
 	clear_screen(base);
 
