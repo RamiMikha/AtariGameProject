@@ -4,10 +4,10 @@ tst_render: tst_render.o renderer.o raster.o model.o
 tst_render.o: tst_re~1.c renderer\renderer.h
 	cc68x -g -c tst_re~1.c
 	
-tst_rast: tst_rast.o raster.o
-	cc68x -g tst_rast.o raster.o -o tst_rast
+tst_rast: tst_rast.o raster\raster.o
+	cc68x -g tst_rast.o raster\raster.o -o tst_rast
 
-tst_rast.o: tst_rast.c raster.h
+tst_rast.o: tst_rast.c raster\raster.h
 	cc68x -g -c tst_rast.c
 
 raster.o: raster\raster.c raster\raster.h
