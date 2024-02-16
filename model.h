@@ -2,10 +2,10 @@
 Team Members: Rami Mikha & Jarod Dacocos
 
 The data structures in this file represent the game's
-objects - the bird and the pipe and their behaviours. The 
-functions in this file represent the game logic and world
-physics such as movement of pipe and bird as well as collisions
-between the bird and the pipe or ground.
+objects - the bird, the pipe and their properties. The 
+functions in this file represent the objects behaviours such as
+movement of pipe and bird as well as collisions between the bird
+and the pipe or ground.
 ------------------------------------------------------------*/ 
 
 #ifndef MODEL_H
