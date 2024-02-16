@@ -1,3 +1,12 @@
+/*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+Team Members: Rami Mikha & Jarod Dacocos
+
+The functions in this file are part of a raster graphics library that
+support the required graphics capabilities of the game. The functions
+are responsible for plotting bitmaps and rectangles to the frame 
+buffer as well as clearing the screen.
+------------------------------------------------------------*/ 
+
 #ifndef RASTER_H
 #define RASTER_H
 
