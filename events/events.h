@@ -11,6 +11,8 @@ condition-based events (such as collisions).
 #define EVENTS_H
 
 #include "..\model.h"
+#include <osbind.h>
+#include <stdlib.h>
 
 #define GRAVITY 1
 #define PIPE_SPEED -1
