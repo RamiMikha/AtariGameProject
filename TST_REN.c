@@ -6,6 +6,7 @@ int main() {
 
     model.bird.x = 100;
     model.bird.y = 100;
+    model.pipe.x = 300;
 
     render(base, model);
     return 0;

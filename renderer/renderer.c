@@ -89,7 +89,9 @@ void render_pipe(UINT32 *base, Pipes *pipe) {
         pipe->y += PIPE_SECTION_HEIGHT;
     }
 
-    render_pipe_opening(base, PIPE_OPENING_SIZE, pipe->x, pipe->y);
+    pipe->opening_height = rand() % 200 + 50; 
+
+    render_pipe_opening(base, PIPE_OPENING_SIZE, pipe->x, pipe->opening_height);
 
 }
 
