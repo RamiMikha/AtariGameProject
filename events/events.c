@@ -1,4 +1,5 @@
 #include <osbind.h>
+#include <stdlib.h>
 #include "events.h"
 
 /* Synchronized Events*/
@@ -13,10 +14,9 @@ void pipe_move(Pipes *pipe) {
 
 void pipe_spawn(Pipes *pipe) {
     pipe->x = 640;
-    pipe->opening_gap = 96;
 
     /*'%200 + 50' limits the height to be between 50 to 250 pixels down on screen */
-    pipe->opening_height = random() % 200 + 50;
+    pipe->opening_height = rand() % 200 + 50;
 }
 
 void bird_spawn(Bird *bird) {
@@ -35,7 +35,6 @@ void bird_flap(Bird *bird) {
 void collision(Bird *bird, Pipes *pipe) {
 
     if (check_collision(bird, pipe)){
-        clear_screen();
         /*this is where the game normally ends but since we do not have score screen yet this will be added later*/
     }
 }
