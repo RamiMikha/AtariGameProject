@@ -38,11 +38,11 @@ const UINT32 flappy_bitmap[32] = {
 };
 
 const UINT8 random_bitmap[5] = {
-	0x7f, 
-  	0x7c, 
-  	0x80, 
-  	0x86, 
-  	0x97, 
+  0x7f, 
+  0x7c, 
+  0x80, 
+  0x86, 
+  0x97, 
 };
 
 int main()
@@ -50,15 +50,12 @@ int main()
 	UINT32 *base = Physbase();
 	UINT8 *base8 = Physbase();
 
+  /*Testing all 4 raster graphics functions*/
 	clear_screen(base);
 
 	fill_region(base, 0, 639, 300, 399,1);
 
-	clear_screen(base);
-
 	plot_bitmap_32(base, 20, 50, flappy_bitmap, 32);
-
-	clear_screen(base);
 
 	plot_bitmap_8(base8, 60, 70, random_bitmap, 5);
 

@@ -96,6 +96,6 @@ Inputs:
    base - pointer to the base address of the frame buffer
 ------------------------------------------------------------*/
 
-/*void render_score(UINT8 *base,);*/
+
 
 #endif
