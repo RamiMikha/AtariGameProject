@@ -10,7 +10,7 @@ condition-based events (such as collisions).
 #ifndef EVENTS_H
 #define EVENTS_H
 
-#include "model.h"
+#include "..\model.h"
 
 #define GRAVITY 1
 #define PIPE_SPEED -1

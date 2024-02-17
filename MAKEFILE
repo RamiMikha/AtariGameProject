@@ -1,20 +1,22 @@
-tst_render: tst_render.o renderer.o raster.o model.o 
-	cc68x -g renderer\renderer.o raster\raster.o model.o -o render
+tst_all: tst_ren tst_rast tst_evnt
 
-tst_rast: tst_rast.o raster\raster.o
+tst_ren: tst_ren.o renderer.o raster.o model.o 
+	cc68x -g tst_ren.o renderer\renderer.o raster\raster.o model.o -o tst_ren
+
+tst_rast: tst_rast.o raster.o
 	cc68x -g tst_rast.o raster\raster.o -o tst_rast
 
-tst_events: tst_events.o events\events.o 
-	cc68x -g tst_events.o events\events.o -o tst_events
+tst_evnt: tst_evnt.o events.o model.o
+	cc68x -g tst_evnt.o events\events.o model.o -o tst_events
 
-tst_render.o: tst_re~1.c renderer\renderer.h
-	cc68x -g -c tst_re~1.c	
+tst_ren.o: tst_ren.c renderer\renderer.h
+	cc68x -g -c tst_ren.c	
 
 tst_rast.o: tst_rast.c raster\raster.h
 	cc68x -g -c tst_rast.c
 
-tst_events.o: tst_ev~1.c events\events.h
-	cc68x -g -c tst_ev~1.c
+tst_evnt.o: tst_evnt.c events\events.h
+	cc68x -g -c tst_evnt.c
 
 events.o: events\events.c events\events.h
 	cc68x -g -c events\events.c
@@ -29,4 +31,4 @@ renderer.o: renderer\renderer.c renderer\renderer.h
 	cc68x -g -c renderer\renderer.c
 
 clean: 
-	$(RM) *.o renderer\*.o raster\*.o 
+	$(RM) *.o renderer\*.o raster\*.o  events\*.o
