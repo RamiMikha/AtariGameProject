@@ -102,6 +102,3 @@ void render_pipe_opening(UINT32 *base, int opening_size, int x, int y) {
 void render_ground(UINT32 *base) {
     fill_region(base, GROUND_X1, GROUND_X2, GROUND_Y1, GROUND_Y2, 1);
 }
-
-
-void render_score();
