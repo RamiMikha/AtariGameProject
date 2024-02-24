@@ -86,4 +86,6 @@ Inputs:
 
 void render_ground(UINT32 *base);
 
+void render_score(UINT32 *base, int x, int y, int score);
+
 #endif

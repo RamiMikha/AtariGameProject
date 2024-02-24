@@ -21,7 +21,7 @@ and the pipe or ground.
 #define GROUND_Y2 400
 #define GROUND_X1 0
 #define GROUND_X2 640
-
+#define SCORE_Y 50
 
 typedef struct {
   unsigned int x,y;
@@ -34,10 +34,15 @@ typedef struct {
   int delta_x;
 } Pipes;
 
+typedef struct {
+   unsigned int x;
+   int value;
+} Score;
 
 typedef struct {
   Bird bird;
   Pipes pipe;
+  Score score;
 } Model;
 
 /*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
