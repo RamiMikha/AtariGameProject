@@ -1,81 +1,13 @@
 #include "renderer.h"
+#include "../bitmaps.h"
 
-const UINT32 flappy_bitmap[BIRD_HEIGHT] = {
-  0x00000000, 
-  0x00000000, 
-  0x00000000, 
-  0x000fff00, 
-  0x000fff00, 
-  0x00f060c0, 
-  0x00f060c0, 
-  0x03018030, 
-  0x03018030, 
-  0x7fc180cc, 
-  0x7fc180cc, 
-  0x806180cc, 
-  0x806180cc, 
-  0x8018600c, 
-  0x8018600c, 
-  0x80181ffe, 
-  0x80181ffe, 
-  0x60606001, 
-  0x60606001, 
-  0x1f819ffe, 
-  0x1f819ffe, 
-  0x18006006, 
-  0x18006006, 
-  0x07801ff8, 
-  0x07801ff8, 
-  0x007fe000, 
-  0x007fe000, 
-  0x00000000, 
-  0x00000000, 
-  0x00000000,
-  0x00000000, 
-  0x00000000
-};
 
-const UINT32 pipe_section_bitmap[PIPE_SECTION_HEIGHT] = {
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF,
-   0xFFFFFFFF
-
-};
-
-void render(UINT32 *base, Model model) {
+void render(UINT32 *base, UINT8 *base8, Model model) {
     clear_screen(base);
     render_bird(base, &model.bird);
     render_pipe(base, &model.pipe);
     render_ground(base);
+    render_score(base8, 10, SCORE_Y, &model.score);
 }
 
 
@@ -103,12 +35,13 @@ void render_ground(UINT32 *base) {
     fill_region(base, GROUND_X1, GROUND_X2, GROUND_Y1, GROUND_Y2, 1);
 }
 
+/*Printing horizontal lines when printing scores*/
 void render_score(UINT8 *base, int x, int y, Score *score) {
     int digit, i;
     int score_copy = score->value;
     int num_width = 8;
 
-    // Convert score to array of digits
+    /* Convert score to array of digits*/
     int digits[3];
     int num_digits = 0;
     while (score_copy > 0) {
@@ -117,7 +50,7 @@ void render_score(UINT8 *base, int x, int y, Score *score) {
         score_copy /= 10;
     }
 
-    // Render each digit
+    /*Render each digit*/
     for (i= num_digits - 1; i>=0; i--) {
         digit = digits[i];
 

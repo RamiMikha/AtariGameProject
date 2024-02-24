@@ -1,7 +1,7 @@
 tst_all: tst_ren tst_rast tst_evnt
 
-tst_ren: tst_ren.o renderer.o raster.o model.o 
-	cc68x -g tst_ren.o renderer\renderer.o raster\raster.o model.o -o tst_ren
+tst_ren: tst_ren.o renderer.o raster.o model.o bitmaps.o
+	cc68x -g tst_ren.o renderer\renderer.o raster\raster.o model.o bitmaps.o -o tst_ren
 
 tst_rast: tst_rast.o raster.o
 	cc68x -g tst_rast.o raster\raster.o -o tst_rast
@@ -29,6 +29,9 @@ model.o: model.c model.h
 
 renderer.o: renderer\renderer.c renderer\renderer.h
 	cc68x -g -c renderer\renderer.c
+
+bitmaps.o: bitmaps.c bitmaps.h
+	cc68x -g -c bitmaps.c
 
 clean: 
 	$(RM) *.o renderer\*.o raster\*.o  events\*.o
