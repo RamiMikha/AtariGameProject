@@ -1,6 +1,6 @@
 #include "bitmaps.h"
 
-const UINT32 flappy_bitmap[32] = {
+const UINT32 flappy_bitmap[BIRD_HEIGHT] = {
   0x00000000, 
   0x00000000, 
   0x00000000, 
