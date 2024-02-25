@@ -16,7 +16,7 @@ int check_collision(Bird *bird, Pipes *pipe) {
     int collision_bool = 0;
 
     /* ground collision*/
-    if (bird->y >= GROUND_Y1) {
+    if (bird->y + BIRD_HEIGHT >= GROUND_Y1) {
         collision_bool = 1;
     }
 
