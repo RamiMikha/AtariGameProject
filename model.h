@@ -22,7 +22,7 @@ and the pipe or ground.
 #define GROUND_X1 0
 #define GROUND_X2 640
 #define SCORE_Y 50
-#define FONT_LENGTH 7 
+#define FONT_LENGTH 7
 
 typedef struct {
   unsigned int x,y,prev_y;
@@ -90,6 +90,6 @@ Outputs:
 
 int check_collision (Bird *bird, Pipes *pipe);
 
-void increment_score(Bird *bird, Pipes *pipe, Score *score)
+void increment_score(Bird *bird, Pipes *pipe, Score *score);
 
 #endif
