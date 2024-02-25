@@ -11,7 +11,7 @@ void pipe_move(Pipes *pipe) {
 }
 
 void pipe_spawn(Pipes *pipe) {
-    pipe->x = 640;
+    pipe->x = 600;
     pipe->y = 0;
 
     /*'%200 + 50' limits the height to be between 50 to 250 pixels down on screen */

@@ -14,9 +14,9 @@ condition-based events (such as collisions).
 #include <osbind.h>
 #include <stdlib.h>
 
-#define GRAVITY 1
-#define PIPE_SPEED -1
-#define FLAP -5
+#define GRAVITY 15
+#define PIPE_SPEED -30
+#define FLAP -30
 
 /* Synchronized Events*/
 
@@ -101,7 +101,7 @@ Inputs:
    pipe - pointer to the pipe object
 ------------------------------------------------------------*/
 
-void collision(Bird *bird, Pipes *pipe);
+int collision(Bird *bird, Pipes *pipe);
 
 
 
