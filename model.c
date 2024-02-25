@@ -30,4 +30,8 @@ int check_collision(Bird *bird, Pipes *pipe) {
     return collision_bool; 
 }
 
+void increment_score(Bird *bird, Pipes *pipe, Score *score) {
+    score->value++;
+}
+
 

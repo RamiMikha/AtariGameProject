@@ -34,3 +34,9 @@ void bird_flap(Bird *bird) {
 int collision(Bird *bird, Pipes *pipe) {
     return check_collision(bird, pipe);
 }
+
+void pass_pipe(Bird *bird, Pipes *pipe, Score *score) {
+    if (bird->x > pipe->x + PIPE_WIDTH) {
+        increment_score(bird, pipe, score);
+    }
+}

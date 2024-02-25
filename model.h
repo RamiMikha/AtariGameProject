@@ -90,4 +90,6 @@ Outputs:
 
 int check_collision (Bird *bird, Pipes *pipe);
 
+void increment_score(Bird *bird, Pipes *pipe, Score *score)
+
 #endif

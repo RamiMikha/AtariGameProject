@@ -43,7 +43,8 @@ int main(){
             render(base, base8, model);
             if (collision(&model.bird, &model.pipe)){
                 quit = 1;
-            }        
+            }
+            pass_pipe(&model.bird, &model.pipe, &model.score);        
         
         }    
         if (get_input() == ' '){
