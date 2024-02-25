@@ -12,6 +12,7 @@ void pipe_move(Pipes *pipe) {
 
 void pipe_spawn(Pipes *pipe) {
     pipe->x = 640;
+    pipe->y = 0;
 
     /*'%200 + 50' limits the height to be between 50 to 250 pixels down on screen */
     pipe->opening_height = rand() % 200 + 50;
@@ -30,9 +31,6 @@ void bird_flap(Bird *bird) {
 
 /* Condition-Based Events*/
 
-void collision(Bird *bird, Pipes *pipe) {
-
-    if (check_collision(bird, pipe)){
-        /*this is where the game normally ends but since we do not have score screen yet this will be added later*/
-    }
+int collision(Bird *bird, Pipes *pipe) {
+    return check_collision(bird, pipe);
 }
