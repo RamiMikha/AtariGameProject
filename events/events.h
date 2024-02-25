@@ -103,6 +103,6 @@ Inputs:
 
 int collision(Bird *bird, Pipes *pipe);
 
-void pass_pipe(Bird *bird, Pipes *pipe, Score *score)
+void pass_pipe(Bird *bird, Pipes *pipe, Score *score);
 
 #endif
