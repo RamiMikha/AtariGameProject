@@ -2,11 +2,13 @@
 
 void move_bird (Bird *bird, int move_value) {
     bird->delta_y = move_value;
+    bird->prev_y = bird->y;
     bird->y += bird->delta_y;
 }
 
 void move_pipe (Pipes *pipe, int move_value) {
     pipe->delta_x = move_value;
+    bird->prev_x = pipe->x;
     pipe->x += pipe->delta_x;
 }
 
