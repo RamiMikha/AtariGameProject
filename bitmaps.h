@@ -1,8 +1,5 @@
 #include "raster\types.h"
-
-#define FONT_LENGTH 7 
-#define BIRD_HEIGHT 32
-#define PIPE_SECTION_HEIGHT 22
+#include "model.h"
 
 extern const UINT32 flappy_bitmap[BIRD_HEIGHT];
 extern const UINT32 pipe_section_bitmap[PIPE_SECTION_HEIGHT];
