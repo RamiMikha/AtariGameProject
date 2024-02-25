@@ -34,8 +34,7 @@ void render_pipe(UINT32 *base, Pipes *pipe) {
         plot_bitmap_32(base, pipe->x, pipe->y, pipe_section_bitmap, PIPE_SECTION_HEIGHT);
         pipe->y += PIPE_SECTION_HEIGHT;
     }
-
-    pipe->opening_height = rand() % 200 + 50; 
+ 
 
     render_pipe_opening(base, PIPE_OPENING_SIZE, pipe->x, pipe->opening_height);
 
