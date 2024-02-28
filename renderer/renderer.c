@@ -41,13 +41,9 @@ void clear_bird(UINT32 *base, Bird *bird) {
 
 void render_pipe(UINT32 *base, Pipes *pipe) {
     pipe->y = 0;
-    while(pipe->y < GROUND_Y1) { 
-        plot_bitmap_32(base, pipe->x, pipe->y, pipe_section_bitmap, PIPE_SECTION_HEIGHT);
-        pipe->y += PIPE_SECTION_HEIGHT;
-    }
- 
-
-    render_pipe_opening(base, PIPE_OPENING_SIZE, pipe->x, pipe->opening_height);
+    fill_region(base, pipe->x, pipe->x + PIPE_WIDTH, 0, pipe->opening_height, 1);
+    pipe->y = pipe->opening_height + PIPE_OPENING_SIZE;
+    fill_region(base, pipe->x, pipe->x + PIPE_WIDTH, pipe->y, GROUND_Y1, 1);
 
 }
 
@@ -57,10 +53,8 @@ void render_pipe_opening(UINT32 *base, int opening_size, int x, int y) {
 
 void clear_pipe(UINT32 *base, Pipes *pipe) {
     pipe->y = 0;
-    while (pipe->y < GROUND_Y1) {
-        fill_region(base, pipe->prev_x, pipe->prev_x + PIPE_WIDTH, pipe->y, pipe->y + PIPE_SECTION_HEIGHT, 0);
-        pipe->y += PIPE_SECTION_HEIGHT;
-    }
+    fill_region(base, pipe->prev_x, pipe->prev_x + PIPE_WIDTH, pipe->y, GROUND_Y1, 0);
+    
 }
 
 void render_ground(UINT32 *base) {
