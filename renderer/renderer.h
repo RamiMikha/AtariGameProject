@@ -91,6 +91,8 @@ Inputs:
 
 void render_ground(UINT32 *base);
 
+void clear_score(UINT32 *base, Score *score);
+
 void render_score(UINT8 *base, int x, int y, Score *score);
 
 #endif

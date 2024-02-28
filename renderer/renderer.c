@@ -27,8 +27,10 @@ void update_render(UINT32 *base, UINT8 *base8, Model model) {
         render_pipe(base, &model.pipe);
         model.pipe.prev_x = model.pipe.x;
     }
-    
-    /*render_score(base8, 10, SCORE_Y, &model.score);*/
+    if (model.score.value != model.score.prev_value) {
+        clear_score(base, &model.score);
+        render_score(base8, 10, SCORE_Y, &model.score);
+    }
 }
 
 void render_bird(UINT32 *base, Bird *bird) {
@@ -59,6 +61,10 @@ void clear_pipe(UINT32 *base, Pipes *pipe) {
 
 void render_ground(UINT32 *base) {
     fill_region(base, GROUND_X1, GROUND_X2, GROUND_Y1, GROUND_Y2, 1);
+}
+
+void clear_score(UINT32 *base, Score *score) {
+    fill_region(base, score->x, score->x + 8, SCORE_Y, SCORE_Y + 8, 0);
 }
 
 /*Printing horizontal lines when printing scores*/
