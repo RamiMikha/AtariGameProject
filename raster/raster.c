@@ -5,12 +5,13 @@ void plot_bitmap_32(UINT32 *base, int x, int y, UINT32 *bitmap, unsigned int hei
 	int longs_per_screen = 8000;
 	int offset = (y * screenWidth) + (x >> 5);
 
+	UINT32 *offsetPtr = base + offset;
 	int i;
 	for (i = 0; i < height; i++) {
 		if (offset < longs_per_screen) {
-			*(base + offset) |= bitmap[i];
+			*offsetPtr |= bitmap[i];
 		}
-		offset += screenWidth;
+		offsetPtr += screenWidth;
 	}
 }
 
@@ -51,7 +52,6 @@ void fill_region(UINT32 *base, int x1, int x2, int y1, int y2, int color)
 		colorValue = 0xFFFFFFFF;
 	}
 	
-
 	for(i = x1; i < x2 && i < 640; i++) {
         for(j = y1; j < y2 && j < 400; j++) {
             int offset = (j * screenWidth) + (i >> 5);
