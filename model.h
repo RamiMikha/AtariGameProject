@@ -38,6 +38,7 @@ typedef struct {
 typedef struct {
    unsigned int x;
    int value;
+   int prev_value;
 } Score;
 
 typedef struct {
