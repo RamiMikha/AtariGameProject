@@ -21,10 +21,10 @@ int main(){
     UINT8 *base8 = Physbase();
     Model model;
     int quit = 0;
-    UINT32 timeThen, timeNow, timeElapsed;
+    UINT32 timeThen, timeNow, timeElapsed = 0;
     model.score.value = 1;
     model.score.x = 10;
-
+    
     
     /*Setting up initial frame*/
     clear_screen(base);
@@ -40,16 +40,18 @@ int main(){
         if (timeElapsed > 0){
             bird_gravity(&model.bird);
             pipe_move(&model.pipe);
-            render(base, base8, model);
+            update_render(base, base8, model);
             if (collision(&model.bird, &model.pipe)){
                 quit = 1;
             }
             pass_pipe(&model.bird, &model.pipe, &model.score);        
-        
+            /*TO DO: if pipe reaches left end of screen erase pipe and spawn new pipe on the right*/
         }    
         if (get_input() == ' '){
             bird_flap(&model.bird);
         }
+
+        timeThen = timeNow;
     }
 
     return 0;
