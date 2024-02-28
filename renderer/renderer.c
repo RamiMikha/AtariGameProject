@@ -5,6 +5,18 @@
 
 void render(UINT32 *base, UINT8 *base8, Model model) {
     
+    render_bird(base, &model.bird);
+    model.bird.prev_y = model.bird.y;
+    
+    render_pipe(base, &model.pipe);
+    model.pipe.prev_x = model.pipe.x;
+
+    render_ground(base);
+    render_score(base8, 10, SCORE_Y, &model.score);
+}
+
+void update_render(UINT32 *base, UINT8 *base8, Model model) {
+    
     if(model.bird.y != model.bird.prev_y) {
         clear_bird(base, &model.bird);
         render_bird(base, &model.bird);
@@ -15,10 +27,9 @@ void render(UINT32 *base, UINT8 *base8, Model model) {
         render_pipe(base, &model.pipe);
         model.pipe.prev_x = model.pipe.x;
     }
-    render_ground(base);
-    render_score(base8, 10, SCORE_Y, &model.score);
+    
+    /*render_score(base8, 10, SCORE_Y, &model.score);*/
 }
-
 
 void render_bird(UINT32 *base, Bird *bird) {
     plot_bitmap_32(base, bird->x, bird->y, flappy_bitmap, BIRD_HEIGHT);
