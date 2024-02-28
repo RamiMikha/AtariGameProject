@@ -12,6 +12,7 @@ void plot_bitmap_32(UINT32 *base, int x, int y, UINT32 *bitmap, unsigned int hei
 			*offsetPtr |= bitmap[i];
 		}
 		offsetPtr += screenWidth;
+		offset += screenWidth;
 	}
 }
 
