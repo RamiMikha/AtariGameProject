@@ -44,11 +44,11 @@ int main(){
             if (collision(&model.bird, &model.pipe)){
                 quit = 1;
             }
-            /*Not clearing pipe properly*/
+            
             if (pass_pipe(&model.bird, &model.pipe, &model.score)){
-                clear_pipe(base, &model.pipe);
                 pipe_spawn(&model.pipe);
-            }        
+                clear_pipe(base, &model.pipe);
+            }
         }    
         if (get_input() == ' '){
             bird_flap(&model.bird);

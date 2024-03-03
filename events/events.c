@@ -11,7 +11,7 @@ void pipe_move(Pipes *pipe) {
 }
 
 void pipe_spawn(Pipes *pipe) {
-    
+    pipe->prev_x = pipe->x;
     pipe->x = 600;
     pipe->y = 0;
 
