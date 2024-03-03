@@ -52,6 +52,7 @@ int main(){
         }    
         if (get_input() == ' '){
             bird_flap(&model.bird);
+            clear_bird(base, &model.bird);
         }
 
         timeThen = timeNow;
