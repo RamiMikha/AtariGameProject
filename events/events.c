@@ -11,6 +11,7 @@ void pipe_move(Pipes *pipe) {
 }
 
 void pipe_spawn(Pipes *pipe) {
+    
     pipe->x = 600;
     pipe->y = 0;
 
@@ -35,8 +36,11 @@ int collision(Bird *bird, Pipes *pipe) {
     return check_collision(bird, pipe);
 }
 
-void pass_pipe(Bird *bird, Pipes *pipe, Score *score) {
+int pass_pipe(Bird *bird, Pipes *pipe, Score *score) {
+    int status = 0;
     if (bird->x > pipe->x + PIPE_WIDTH) {
         increment_score(bird, pipe, score);
+        status = 1;
     }
+    return status;
 }

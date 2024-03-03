@@ -15,7 +15,7 @@ condition-based events (such as collisions).
 #include <stdlib.h>
 
 #define GRAVITY 15
-#define PIPE_SPEED -30
+#define PIPE_SPEED -15
 #define FLAP -30
 
 /* Synchronized Events*/
@@ -103,6 +103,8 @@ Inputs:
 
 int collision(Bird *bird, Pipes *pipe);
 
-void pass_pipe(Bird *bird, Pipes *pipe, Score *score);
+int pass_pipe(Bird *bird, Pipes *pipe, Score *score);
+
+
 
 #endif
