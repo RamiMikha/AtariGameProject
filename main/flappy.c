@@ -40,12 +40,6 @@ int main(){
     UINT32 timeThen, timeNow, timeElapsed = 0;
     model.score.value = 1;
     model.score.x = 10;
-
-    
-    /* temp code
-    void* back_buffer = malloc(BUFFER_SIZE + ALIGNMENT);
-    void* back_buffer_aligned = (void *)(((unsigned long)back_buffer + ALIGNMENT - 1) & ~(ALIGNMENT - 1));
-    */ 
     
     /*Setting up initial frame*/
     clear_screen(base);
