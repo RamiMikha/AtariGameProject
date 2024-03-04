@@ -47,8 +47,6 @@ int main(){
     pipe_spawn(&model.pipe);
     render(base, base8, model);
     setScreen(-1,align_back_buffer(BUFFER_SIZE,ALIGNMENT),-1);
-    Vsync();
-    
 
     /*Main Game Loop*/
     while(!quit){
@@ -59,6 +57,8 @@ int main(){
             bird_gravity(&model.bird);
             pipe_move(&model.pipe);
             update_render(base, base8, model);
+            setScreen(-1,align_back_buffer(BUFFER_SIZE,ALIGNMENT),-1);
+            Vsync();
             if (collision(&model.bird, &model.pipe)){
                 quit = 1;
             }
