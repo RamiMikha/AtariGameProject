@@ -37,7 +37,7 @@ int main(){
     bird_spawn(&model.bird);
     pipe_spawn(&model.pipe);
     render(base, base8, model);
-    Setscreen(-1,(long)back_buffer_aligned,-1);
+    setScreen(-1,(long)back_buffer_aligned,-1);
 
     /*Main Game Loop*/
     while(!quit){
