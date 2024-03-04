@@ -2,6 +2,10 @@
 #include "..\events\events.h"
 #include "..\raster\types.h"
 #include "input.h"
+#include <osbind.h>
+
+#define BUFFER_SIZE 32000
+#define ALIGNMENT 256
 
 UINT32 get_time(){
     long *timer = (long *)0x462;
@@ -24,13 +28,16 @@ int main(){
     UINT32 timeThen, timeNow, timeElapsed = 0;
     model.score.value = 1;
     model.score.x = 10;
-    
+
+    void* back_buffer = malloc(BUFFER_SIZE + ALIGNMENT);
+    void* back_buffer_aligned = (void *)(((unsigned long)back_buffer + ALIGNMENT - 1) & ~(ALIGNMENT - 1));
     
     /*Setting up initial frame*/
     clear_screen(base);
     bird_spawn(&model.bird);
     pipe_spawn(&model.pipe);
     render(base, base8, model);
+    Setscreen(-1,(long)back_buffer_aligned,-1);
 
     /*Main Game Loop*/
     while(!quit){
