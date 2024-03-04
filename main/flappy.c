@@ -20,6 +20,18 @@ UINT32 get_time(){
 
 }
 
+int align_back_buffer (int BUFFER_SIZE,int ALIGNMENT) {
+    UINT32 temp = BUFFER_SIZE + ALIGNEMNT;
+    
+    while (temp % 256 != 0) {
+        temp += 1;
+        }
+
+    int back_buffer_aligned = temp;
+
+    return back_buffer_aligned;
+}
+
 int main(){
     UINT32 *base = Physbase();
     UINT8 *base8 = Physbase();
@@ -29,15 +41,20 @@ int main(){
     model.score.value = 1;
     model.score.x = 10;
 
+    
+    /* temp code
     void* back_buffer = malloc(BUFFER_SIZE + ALIGNMENT);
     void* back_buffer_aligned = (void *)(((unsigned long)back_buffer + ALIGNMENT - 1) & ~(ALIGNMENT - 1));
+    */ 
     
     /*Setting up initial frame*/
     clear_screen(base);
     bird_spawn(&model.bird);
     pipe_spawn(&model.pipe);
     render(base, base8, model);
-    setScreen(-1,(long)back_buffer_aligned,-1);
+    setScreen(-1,align_back_buffer(BUFFER_SIZE,ALIGNMENT),-1);
+    Vsync();
+    
 
     /*Main Game Loop*/
     while(!quit){
@@ -67,4 +84,3 @@ int main(){
 
     return 0;
 }
-
