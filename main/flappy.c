@@ -4,10 +4,9 @@
 #include "input.h"
 #include <osbind.h>
 
-#define BUFFER_SIZE 32000
-#define ALIGNMENT 256
+UINT32 unaligned_back_buffer = 32256;
 
-UINT32 get_time(){
+UINT32 get_time() {
     long *timer = (long *)0x462;
     long timeNow;
     long old_ssp;
@@ -17,22 +16,17 @@ UINT32 get_time(){
     Super(old_ssp);
 
     return timeNow;
-
 }
 
-int align_back_buffer (int BUFFER_SIZE,int ALIGNMENT) {
-    UINT32 unaligned_back_buffer = BUFFER_SIZE + ALIGNMENT;
-    
-    while (unaligned_back_buffer % 256 != 0) {
-        unaligned_back_buffer += 1;
-        }
+UINT32 align_back_buffer(back_buffer) {
+    if (back_buffer % 256 != 0) {
+        back_buffer += 1;
+    }
 
-    int aligned_back_buffer = unaligned_back_buffer;
-
-    return aligned_back_buffer;
+    return back_buffer;
 }
 
-int main(){
+int main() {
     UINT32 *base = Physbase();
     UINT8 *base8 = Physbase();
     Model model;
@@ -46,7 +40,6 @@ int main(){
     bird_spawn(&model.bird);
     pipe_spawn(&model.pipe);
     render(base, base8, model);
-    setScreen(-1,align_back_buffer(BUFFER_SIZE,ALIGNMENT),-1);
 
     /*Main Game Loop*/
     while(!quit){
@@ -55,9 +48,11 @@ int main(){
 
         if (timeElapsed > 0){
             bird_gravity(&model.bird);
+            Vsync();
             pipe_move(&model.pipe);
+            Vsync();
             update_render(base, base8, model);
-            setScreen(-1,align_back_buffer(BUFFER_SIZE,ALIGNMENT),-1);
+            Setscreen(-1,align_back_buffer(unaligned_back_buffer),-1);
             Vsync();
             if (collision(&model.bird, &model.pipe)){
                 quit = 1;
