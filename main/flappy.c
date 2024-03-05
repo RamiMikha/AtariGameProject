@@ -19,6 +19,7 @@ UINT32 get_time() {
 }
 
 UINT8 align_back_buffer(back_buffer) {
+    /* need to fix */
     while (back_buffer % 256 != 0) {
         back_buffer += 1;
     }
@@ -34,6 +35,7 @@ int main() {
     UINT32 timeThen, timeNow, timeElapsed = 0;
     model.score.value = 1;
     model.score.x = 10;
+    int switch_bool = 0;
     
     /*Setting up initial frame*/
     clear_screen(base);
@@ -48,12 +50,23 @@ int main() {
 
         if (timeElapsed > 0){
             bird_gravity(&model.bird);
-            Vsync();
             pipe_move(&model.pipe);
-            Vsync();
             update_render(base, base8, model);
+
+            /* back buffer */
+            if (switch_bool == 0) {
             Setscreen(-1,align_back_buffer(unaligned_back_buffer),-1);
             Vsync();
+            switch_bool = 1;                
+            }
+
+            /* front buffer */
+            if (switch_bool == 1) {
+            Setscreen(-1,align_back_buffer(unaligned_back_buffer),-1);
+            Vsync();
+            switch_bool = 0;                
+            }
+
             if (collision(&model.bird, &model.pipe)){
                 quit = 1;
             }
