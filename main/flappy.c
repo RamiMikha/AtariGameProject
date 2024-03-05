@@ -21,7 +21,7 @@ UINT32 get_time(){
 }
 
 int align_back_buffer (int BUFFER_SIZE,int ALIGNMENT) {
-    UINT32 unaligned_back_buffer = BUFFER_SIZE + ALIGNEMNT;
+    UINT32 unaligned_back_buffer = BUFFER_SIZE + ALIGNMENT;
     
     while (unaligned_back_buffer % 256 != 0) {
         unaligned_back_buffer += 1;
