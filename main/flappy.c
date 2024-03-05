@@ -4,7 +4,7 @@
 #include "input.h"
 #include <osbind.h>
 
-UINT32 unaligned_back_buffer = 32256;
+UINT8 unaligned_back_buffer[32256];
 
 UINT32 get_time() {
     long *timer = (long *)0x462;
@@ -18,8 +18,8 @@ UINT32 get_time() {
     return timeNow;
 }
 
-UINT32 align_back_buffer(back_buffer) {
-    if (back_buffer % 256 != 0) {
+UINT8 align_back_buffer(back_buffer) {
+    while (back_buffer % 256 != 0) {
         back_buffer += 1;
     }
 
