@@ -4,7 +4,8 @@
 #include "input.h"
 #include <osbind.h>
 
-UINT8 unaligned_back_buffer[32256];
+
+UINT8 back_buffer[32256];
 
 UINT32 get_time() {
     long *timer = (long *)0x462;
@@ -18,24 +19,26 @@ UINT32 get_time() {
     return timeNow;
 }
 
-UINT8 align_back_buffer(back_buffer) {
+int align_back_buffer(UINT8 back_buffer[]) {
     /* need to fix */
-    while (back_buffer % 256 != 0) {
-        back_buffer += 1;
+    int index = 0;
+    while ((UINT8)&back_buffer[index] % 256 != 0) {
+        index++;
     }
-
-    return back_buffer;
+    return index;
 }
 
 int main() {
     UINT32 *base = Physbase();
     UINT8 *base8 = Physbase();
+    UINT32 *back_base = (UINT32 *)&back_buffer[align_back_buffer(back_buffer)];
     Model model;
     int quit = 0;
+    int switch_bool = 0;
     UINT32 timeThen, timeNow, timeElapsed = 0;
     model.score.value = 1;
     model.score.x = 10;
-    int switch_bool = 0;
+    
     
     /*Setting up initial frame*/
     clear_screen(base);
@@ -55,15 +58,13 @@ int main() {
 
             /* back buffer */
             if (switch_bool == 0) {
-            Setscreen(-1,align_back_buffer(unaligned_back_buffer),-1);
-            Vsync();
+            Setscreen(-1,back_base,-1);
             switch_bool = 1;                
             }
 
             /* front buffer */
             if (switch_bool == 1) {
-            Setscreen(-1,align_back_buffer(unaligned_back_buffer),-1);
-            Vsync();
+            Setscreen(-1,base,-1);
             switch_bool = 0;                
             }
 
