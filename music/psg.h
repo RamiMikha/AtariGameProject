@@ -1,8 +1,8 @@
+#include <osbind.h>
+#include "..\raster\types.h"
+
 #ifndef PSG_H
 #define PSG_H
-
-#include <osbind.h>
-
 
 /* Main PSG Routines */
 void write_psg (int reg, UINT8 val);
