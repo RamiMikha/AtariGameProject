@@ -95,4 +95,5 @@ void clear_score(UINT32 *base, Score *score);
 
 void render_score(UINT8 *base, int x, int y, Score *score);
 
+void render_word(UINT8 *base, int x, int y, char *word);
 #endif

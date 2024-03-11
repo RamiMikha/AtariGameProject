@@ -12,7 +12,8 @@ void render(UINT32 *base, UINT8 *base8, Model model) {
     model.pipe.prev_x = model.pipe.x;
 
     render_ground(base);
-    render_score(base8, 10, SCORE_Y, &model.score);
+    render_score(base8, 10, SCORE_Y + 10, &model.score);
+    render_word(base8, 10, SCORE_Y, "SCORE");
 }
 
 void update_render(UINT32 *base, UINT8 *base8, Model model) {
@@ -29,7 +30,7 @@ void update_render(UINT32 *base, UINT8 *base8, Model model) {
     }
     if (model.score.value != model.score.prev_value) {
         clear_score(base, &model.score);
-        render_score(base8, 10, SCORE_Y, &model.score);
+        render_score(base8, 10, SCORE_Y + 10, &model.score);
     }
 }
 
@@ -64,10 +65,9 @@ void render_ground(UINT32 *base) {
 }
 
 void clear_score(UINT32 *base, Score *score) {
-    fill_region(base, score->x, score->x + 8, SCORE_Y, SCORE_Y + 8, 0);
+    fill_region(base, score->x, score->x + 8, SCORE_Y + 10, SCORE_Y +10 + 8, 0);
 }
 
-/*Printing horizontal lines when printing scores*/
 void render_score(UINT8 *base, int x, int y, Score *score) {
     int digit, i;
     int score_copy = score->value;
@@ -119,5 +119,97 @@ void render_score(UINT8 *base, int x, int y, Score *score) {
                 break;
         }
         x += num_width;
+    }
+}
+
+void render_word(UINT8 *base, int x, int y, char *word) {
+    int i;
+    int char_width = 8;
+
+    /* Render each character */
+    for (i = 0; word[i] != '\0'; i++) {
+        char c = word[i];
+
+        switch (c) {
+            case 'A':
+                plot_bitmap_8(base, x, y, A_bitmap, FONT_LENGTH);
+                break;
+            case 'B':
+                plot_bitmap_8(base, x, y, B_bitmap, FONT_LENGTH);
+                break;
+            case 'C':
+                plot_bitmap_8(base, x, y, C_bitmap, FONT_LENGTH);
+                break;
+            case 'D':
+                plot_bitmap_8(base, x, y, D_bitmap, FONT_LENGTH);
+                break;
+            case 'E':
+                plot_bitmap_8(base, x, y, E_bitmap, FONT_LENGTH);
+                break;
+            case 'F':
+                plot_bitmap_8(base, x, y, F_bitmap, FONT_LENGTH);
+                break;
+            case 'G':
+                plot_bitmap_8(base, x, y, G_bitmap, FONT_LENGTH);
+                break;
+            case 'H':
+                plot_bitmap_8(base, x, y, H_bitmap, FONT_LENGTH);
+                break;
+            case 'I':
+                plot_bitmap_8(base, x, y, I_bitmap, FONT_LENGTH);
+                break;
+            case 'J':
+                plot_bitmap_8(base, x, y, J_bitmap, FONT_LENGTH);
+                break;
+            case 'K':
+                plot_bitmap_8(base, x, y, K_bitmap, FONT_LENGTH);
+                break;
+            case 'L':
+                plot_bitmap_8(base, x, y, L_bitmap, FONT_LENGTH);
+                break;
+            case 'M':
+                plot_bitmap_8(base, x, y, M_bitmap, FONT_LENGTH);
+                break;
+            case 'N':
+                plot_bitmap_8(base, x, y, N_bitmap, FONT_LENGTH);
+                break;
+            case 'O':
+                plot_bitmap_8(base, x, y, O_bitmap, FONT_LENGTH);
+                break;
+            case 'P':
+                plot_bitmap_8(base, x, y, P_bitmap, FONT_LENGTH);
+                break;
+            case 'Q':
+                plot_bitmap_8(base, x, y, Q_bitmap, FONT_LENGTH);
+                break;
+            case 'R':
+                plot_bitmap_8(base, x, y, R_bitmap, FONT_LENGTH);
+                break;
+            case 'S':
+                plot_bitmap_8(base, x, y, S_bitmap, FONT_LENGTH);
+                break;
+            case 'T':
+                plot_bitmap_8(base, x, y, T_bitmap, FONT_LENGTH);
+                break;
+            case 'U':
+                plot_bitmap_8(base, x, y, U_bitmap, FONT_LENGTH);
+                break;
+            case 'V':
+                plot_bitmap_8(base, x, y, V_bitmap, FONT_LENGTH);
+                break;
+            case 'W':
+                plot_bitmap_8(base, x, y, W_bitmap, FONT_LENGTH);
+                break;
+            case 'X':
+                plot_bitmap_8(base, x, y, X_bitmap, FONT_LENGTH);
+                break;
+            case 'Y':
+                plot_bitmap_8(base, x, y, Y_bitmap, FONT_LENGTH);
+                break;
+            case 'Z':
+                plot_bitmap_8(base, x, y, Z_bitmap, FONT_LENGTH);
+                break;
+        }
+        x += char_width;
     }
 }
