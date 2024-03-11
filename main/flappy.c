@@ -20,7 +20,6 @@ UINT32 get_time() {
 }
 
 int align_back_buffer(UINT8 back_buffer[]) {
-    /* need to fix */
     int index = 0;
     while ((UINT8)&back_buffer[index] % 256 != 0) {
         index++;
@@ -36,8 +35,7 @@ int main() {
     int quit = 0;
     int switch_bool = 0;
     UINT32 timeThen, timeNow, timeElapsed = 0;
-    model.score.value = 1;
-    model.score.x = 10;
+    model.score.value = 0;
     
     
     /*Setting up initial frame*/

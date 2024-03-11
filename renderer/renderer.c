@@ -1,6 +1,4 @@
 #include "renderer.h"
-#include "../bitmaps.h"
-#include <stdio.h>
 
 
 void render(UINT32 *base, UINT8 *base8, Model model) {
@@ -12,8 +10,8 @@ void render(UINT32 *base, UINT8 *base8, Model model) {
     model.pipe.prev_x = model.pipe.x;
 
     render_ground(base);
-    render_score(base8, 10, SCORE_Y + 10, &model.score);
-    render_word(base8, 10, SCORE_Y, "SCORE");
+    render_score(base8, SCORE_X, SCORE_Y, &model.score);
+    render_word(base8, SCORE_TITLE_X, SCORE_TITLE_Y, "SCORE");
 }
 
 void update_render(UINT32 *base, UINT8 *base8, Model model) {
@@ -29,8 +27,8 @@ void update_render(UINT32 *base, UINT8 *base8, Model model) {
         model.pipe.prev_x = model.pipe.x;
     }
     if (model.score.value != model.score.prev_value) {
-        clear_score(base, &model.score);
-        render_score(base8, 10, SCORE_Y + 10, &model.score);
+        clear_score(base);
+        render_score(base8, SCORE_X, SCORE_Y , &model.score);
     }
 }
 
@@ -64,8 +62,8 @@ void render_ground(UINT32 *base) {
     fill_region(base, GROUND_X1, GROUND_X2, GROUND_Y1, GROUND_Y2, 1);
 }
 
-void clear_score(UINT32 *base, Score *score) {
-    fill_region(base, score->x, score->x + 8, SCORE_Y + 10, SCORE_Y +10 + 8, 0);
+void clear_score(UINT32 *base) {
+    fill_region(base, SCORE_X, SCORE_X + 8, SCORE_Y , SCORE_Y + FONT_LENGTH, 0);
 }
 
 void render_score(UINT8 *base, int x, int y, Score *score) {

@@ -21,8 +21,11 @@ and the pipe or ground.
 #define GROUND_Y2 400
 #define GROUND_X1 0
 #define GROUND_X2 640
-#define SCORE_Y 50
+#define SCORE_Y 60
+#define SCORE_X 10
 #define FONT_LENGTH 7
+#define SCORE_TITLE_Y 50
+#define SCORE_TITLE_X 10
 
 typedef struct {
   unsigned int x,y,prev_y;
@@ -36,7 +39,6 @@ typedef struct {
 } Pipes;
 
 typedef struct {
-   unsigned int x;
    int value;
    int prev_value;
 } Score;

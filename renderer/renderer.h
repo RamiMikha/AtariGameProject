@@ -16,6 +16,8 @@ pipe.
 #include <stdlib.h>
 #include "..\model.h"
 #include "..\raster\raster.h"
+#include "../bitmaps.h"
+
 
 
 
@@ -91,7 +93,7 @@ Inputs:
 
 void render_ground(UINT32 *base);
 
-void clear_score(UINT32 *base, Score *score);
+void clear_score(UINT32 *base);
 
 void render_score(UINT8 *base, int x, int y, Score *score);
 
