@@ -2,6 +2,7 @@
 #include "..\events\events.h"
 #include "..\raster\types.h"
 #include "input.h"
+#include "..\music\music.h"
 #include <osbind.h>
 
 
@@ -43,6 +44,7 @@ int main() {
     bird_spawn(&model.bird);
     pipe_spawn(&model.pipe);
     render(base, base8, model);
+    start_music(&model.music);
 
     /*Main Game Loop*/
     while(!quit){
@@ -74,6 +76,8 @@ int main() {
                 pipe_spawn(&model.pipe);
                 clear_pipe(base, &model.pipe);
             }
+            
+            update_music(timeElapsed, &model.music);
         }    
         if (get_input() == ' '){
             bird_flap(&model.bird);
