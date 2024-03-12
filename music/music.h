@@ -4,11 +4,11 @@
 #ifndef MUSIC_H
 #define MUSIC_H
 
-UINT32 NOTE_DURATION = 1000;
 
-void start_music(Model *model);
 
-void update_music(UINT32 time_elapsed, Model *model);
+void start_music(Music *music);
+
+void update_music(UINT32 time_elapsed, Music *music);
 
 
 

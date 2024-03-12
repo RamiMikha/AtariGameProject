@@ -1,35 +1,40 @@
 #include "music.h"
 
-extern Note song[]= {
-    {0, 248, 11}
-}
+extern Music song[]= {
+    {0, 248, 11},
+    {0, 249, 10},
+    {0, 250, 11}
+};
+
+UINT32 NOTE_DURATION = 1000;
 
 /*No function is tested yet*/
 
-void start_music(Model *model){
-    model.music.current_note = 0;
-    model.music.channel = &song[model.music.current_note][0];
-    model.music.tune = &song[model.music.current_note][1];
-    model.music.volume = &song[model.music.current_note][2];
+void start_music(Music *music){
+    music->current_note = 0;
+    music->channel = &song[music->current_note].channel;
+    music->tune = &song[music->current_note].tune;
+    music->volume = &song[music->current_note].volume;
 
-    set_tone(model.music.channel, model.music.tune);
-    set_volume(model.music.channel, model.music.volume);
-    enable_channel(model.music.channel, 1, 0);
+    set_tone(music->channel, music->tune);
+    set_volume(music->channel, music->volume);
+    enable_channel(music->channel, 1, 0);
 }
 
 
-void update_music(UINT32 time_elapsed, Model *model){
-    int time_since_last_note += time_elapsed;
+void update_music(UINT32 time_elapsed, Music *music){
+    int time_since_last_note = 0;
     
+    time_since_last_note += time_elapsed;
     if (time_since_last_note > NOTE_DURATION){
-        model.music.current_note++;
-        model.music.channel = &song[model.music.current_note][0];
-        model.music.tune = &song[model.music.current_note][1];
-        model.music.volume = &song[model.music.current_note][2];
+        music->current_note++;
+        music->channel = &song[music->current_note].channel;
+        music->tune = &song[music->current_note].tune;
+        music->volume = &song[music->current_note].volume;
 
-        set_tone(model.music.channel, model.music.tune);
-        set_volume(model.music.channel, model.music.volume);
-        enable_channel(model.music.channel, 1, 0);
+        set_tone(music->channel, music->tune);
+        set_volume(music->channel, music->volume);
+        enable_channel(music->channel, 1, 0);
 
         time_since_last_note = 0;
     }
