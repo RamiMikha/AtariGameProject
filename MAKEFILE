@@ -12,6 +12,9 @@ tst_rast: tst_rast.o raster.o
 tst_evnt: tst_evnt.o events.o model.o
 	cc68x -g tst_evnt.o events\events.o model.o -o tst_evnt
 
+tst_msc: tst_msc.o model.o music.o psg.o
+	cc68x -g tst_msc.o model.o music\music.o music\psg.o -o tst_msc
+
 tst_ren.o: tst_ren.c renderer\renderer.h
 	cc68x -g -c tst_ren.c	
 
@@ -20,6 +23,9 @@ tst_rast.o: tst_rast.c raster\raster.h
 
 tst_evnt.o: tst_evnt.c events\events.h
 	cc68x -g -c tst_evnt.c
+
+tst_msc.o: tst_msc.c model.h music\music.h music\psg.h
+	cc68x -g -c tst_msc.c
 
 events.o: events\events.c events\events.h
 	cc68x -g -c events\events.c
