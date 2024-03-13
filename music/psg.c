@@ -14,6 +14,7 @@ void write_psg (int reg, UINT8 val) {
 }
 
 UINT8 read_psg(int reg) {
+  /* For testing purposes */
   UINT8 val;
 
   write_psg(reg, 0);
