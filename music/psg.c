@@ -5,11 +5,12 @@ void write_psg (int reg, UINT8 val) {
   volatile char *PSG_reg_select = 0xFF8800;
   volatile char *PSG_reg_write = 0xFF8802;
   
-  
+  old_ssp = Super(0);
+
   *PSG_reg_select = reg;
   *PSG_reg_write = val;
 
-  old_ssp = Super(0);
+  Super(old_ssp);
 }
 
 void set_tone (int channel, int tuning) {
