@@ -13,6 +13,15 @@ void write_psg (int reg, UINT8 val) {
   Super(old_ssp);
 }
 
+UINT8 read_psg(int reg) {
+  UINT8 val;
+
+  write_psg(reg, 0);
+  val = *((volatile char *)0xFF8802);
+
+  return val;
+}
+
 void set_tone (int channel, int tuning) {
 
   /* Coarse Tuning */
