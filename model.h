@@ -43,18 +43,11 @@ typedef struct {
    int prev_value;
 } Score;
 
-typedef struct {
-   int channel;
-   int tune;
-   int volume;
-   int current_note;
-}Music;
 
 typedef struct {
   Bird bird;
   Pipes pipe;
   Score score;
-  Music music;
 } Model;
 
 
