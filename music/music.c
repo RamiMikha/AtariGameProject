@@ -1,45 +1,50 @@
 #include "music.h"
 #include <stdio.h>
+#include <osbind.h>
+#include <stdlib.h>
 
-extern Music song[]= {
-    {0, 248, 50},
-    {0, 249, 50},
-    {0, 250, 50}
+extern Note song[]= {
+    {0, 248, 10},
+    {0, 248, 10},
+    {0, 248, 10}
 };
 
-UINT32 NOTE_DURATION = 100;
+UINT32 NOTE_DURATION = 1;
+Music* music;
 
-/*No function is tested yet*/
-
-void start_music(Music *music){
+void start_music(){
+    int channel, tune, volume;
+    music = (Music*)malloc(sizeof(Music));
     music->current_note = 0;
-    music->channel = song[music->current_note].channel;
-    music->tune = song[music->current_note].tune;
-    music->volume = song[music->current_note].volume;
+    music->song = song;
+    channel = music->song[music->current_note].channel;
+    tune = music->song[music->current_note].tune;
+    volume = music->song[music->current_note].volume;
 
-    set_tone(music->channel, music->tune);
-    set_volume(music->channel, music->volume);
-    enable_channel(music->channel, 1, 0);
+    set_tone(channel, tune);
+    set_volume(channel, volume);
+    enable_channel(channel, 1, 1);
 }
 
 
-void update_music(UINT32 time_elapsed, Music *music){
-    int time_since_last_note;
+void update_music(UINT32 time_elapsed){
 
-    time_since_last_note += time_elapsed;
-    if (time_since_last_note > NOTE_DURATION){
+    music->time_since_last_note += time_elapsed;
+    if (music->time_since_last_note > NOTE_DURATION){
         if (music->current_note < sizeof(song)/sizeof(song[0])){
+            int channel, tune, volume;
             music->current_note++;
-            music->channel = song[music->current_note].channel;
-            music->tune = song[music->current_note].tune;
-            music->volume = song[music->current_note].volume;
-            set_tone(music->channel, music->tune);
-            set_volume(music->channel, music->volume);
-            enable_channel(music->channel, 1, 0);
+            channel = music->song[music->current_note].channel;
+            tune = music->song[music->current_note].tune;
+            volume = music->song[music->current_note].volume;
+
+            set_tone(channel, tune);
+            set_volume(channel, volume);
+            enable_channel(channel, 1, 1);
 
         } else {
-            start_music(music);
+            start_music();
         }
-        time_since_last_note = 0;
+        music->time_since_last_note = 0;
     }   
 }
