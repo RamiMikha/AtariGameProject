@@ -1,5 +1,4 @@
 #include "music/music.h"
-#include "model.h"
 #include <osbind.h>
 
 
@@ -20,19 +19,21 @@ int main(){
     int quit = 0;
     Model model;
     UINT32 timeThen, timeNow, timeElapsed = 0;
-    start_music(&model.music);
+    start_music();
 
-    while(quit < 1000){
+    timeThen = get_time();
+    while(quit < 100){
         timeNow = get_time();
         timeElapsed = timeNow - timeThen;
 
         if (timeElapsed > 0)
         {
-            update_music(timeElapsed, &model.music);
+            update_music(timeElapsed);
             quit++;
         }
         timeThen = timeNow;
         
     }
+    stop_sound();
     return 0;
 }
