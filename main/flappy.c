@@ -22,7 +22,7 @@ UINT32 get_time() {
 
 int align_back_buffer(UINT8 back_buffer[]) {
     int index = 0;
-    while ((UINT8)&back_buffer[index] % 256 != 0) {
+    while ((UINT32)&back_buffer[index] % 256 != 0) {
         index++;
     }
     return index;
@@ -32,6 +32,7 @@ int main() {
     UINT32 *base = Physbase();
     UINT8 *base8 = Physbase();
     UINT32 *back_base = (UINT32 *)&back_buffer[align_back_buffer(back_buffer)];
+    UINT8 *back_base8 = (UINT8 *)back_base;
     Model model;
     int quit = 0;
     int switch_bool = 0;
@@ -44,6 +45,7 @@ int main() {
     bird_spawn(&model.bird);
     pipe_spawn(&model.pipe);
     render(base, base8, model);
+    render(back_base, back_base8, model);
     start_music(&model.music);
 
     /*Main Game Loop*/
@@ -54,16 +56,15 @@ int main() {
         if (timeElapsed > 0){
             bird_gravity(&model.bird);
             pipe_move(&model.pipe);
-            update_render(base, base8, model);
 
             /* back buffer */
             if (switch_bool == 0) {
+            update_render(back_base, back_base8, model);
             Setscreen(-1,back_base,-1);
             switch_bool = 1;                
             }
-
-            /* front buffer */
             if (switch_bool == 1) {
+            update_render(base, base8, model);
             Setscreen(-1,base,-1);
             switch_bool = 0;                
             }
