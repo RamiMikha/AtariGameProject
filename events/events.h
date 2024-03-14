@@ -14,9 +14,9 @@ condition-based events (such as collisions).
 #include <osbind.h>
 #include <stdlib.h>
 
-#define GRAVITY 15
-#define PIPE_SPEED -15
-#define FLAP -30
+#define GRAVITY 2
+#define PIPE_SPEED -10
+#define FLAP -10
 
 /* Synchronized Events*/
 

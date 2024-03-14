@@ -20,7 +20,7 @@ void pipe_spawn(Pipes *pipe) {
 }
 
 void bird_spawn(Bird *bird) {
-    bird->x = 100;
+    bird->x = 120;
     bird->y = 100;
 }
 
