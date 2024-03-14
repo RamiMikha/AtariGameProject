@@ -43,20 +43,23 @@ void clear_screen(UINT32 *base) {
 void fill_region(UINT32 *base, int x1, int x2, int y1, int y2, int color)
 {
 	int screenWidth = 20;
-	int i;
-	int j;
-	int colorValue;
+	int i,j;
+	int converted_x1 = x1 >> 5;
+	int converted_x2 = x2 >> 5;
+	UINT32 *start;
+	UINT32 colorValue;
 	if (color == 0) {
 		colorValue = 0x00000000;
 	}
 	else {
 		colorValue = 0xFFFFFFFF;
 	}
-	
-	for(i = x1; i < x2 && i < 640; i++) {
-        for(j = y1; j < y2 && j < 400; j++) {
-            int offset = (j * screenWidth) + (i >> 5);
-            *(base + offset) = colorValue;
+
+	for(i = y1; i < y2 && i < 400; i++) {
+		start = base + (i * screenWidth) + converted_x1;
+        for(j = converted_x1; j < converted_x2 && j < 20; j++) {
+            *start = colorValue;
+			start++;
         }
     }
 }
