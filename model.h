@@ -13,7 +13,7 @@ and the pipe or ground.
 
 #define BIRD_WIDTH 32
 #define BIRD_HEIGHT 32
-#define PIPE_WIDTH 8
+#define PIPE_WIDTH 32
 #define PIPE_HEIGHT 640
 #define PIPE_OPENING_SIZE 96
 #define PIPE_SECTION_HEIGHT 32
