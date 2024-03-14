@@ -1,17 +1,12 @@
-struct flappy_effect
+#include "psg.h"
+
+typedef struct
 {
+    int channel;
+    int tune;
+    int volume;
 
-};
-
-struct pass_pipe_effect
-{
-
-};
-
-struct collision_effect
-{
-
-};
+} Sound;
 
 
 void play_bird_effect();
