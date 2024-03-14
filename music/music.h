@@ -3,12 +3,22 @@
 
 #ifndef MUSIC_H
 #define MUSIC_H
+ typedef struct {
+    int channel;
+    int tune;
+    int volume;
+ } Note;
+ 
+typedef struct {
+    int current_note;
+    int lenght;
+    UINT32 time_since_last_note;
+    Note* song;
+} Music;
 
+void start_music();
 
-
-void start_music(Music *music);
-
-void update_music(UINT32 time_elapsed, Music *music);
+void update_music(UINT32 time_elapsed);
 
 
 
