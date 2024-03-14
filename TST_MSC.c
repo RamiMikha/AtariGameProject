@@ -17,7 +17,6 @@ UINT32 get_time() {
 
 int main(){
     int quit = 0;
-    Model model;
     UINT32 timeThen, timeNow, timeElapsed = 0;
     start_music();
 
