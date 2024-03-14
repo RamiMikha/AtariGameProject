@@ -46,7 +46,7 @@ int main() {
     pipe_spawn(&model.pipe);
     render(base, base8, model);
     render(back_base, back_base8, model);
-    start_music(&model.music);
+    start_music();
 
     /*Main Game Loop*/
     while(!quit){
@@ -79,7 +79,7 @@ int main() {
                 clear_pipe(back_base, &model.pipe);
             }
             
-            update_music(timeElapsed, &model.music);
+            update_music(timeElapsed);
         }    
         if (get_input() == ' '){
             bird_flap(&model.bird);
@@ -88,6 +88,6 @@ int main() {
 
         timeThen = timeNow;
     }
-
+    stop_sound();
     return 0;
 }
