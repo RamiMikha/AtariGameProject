@@ -3,6 +3,7 @@
 #include "..\raster\types.h"
 #include "input.h"
 #include "..\music\music.h"
+#include "..\music\effects.h"
 #include <osbind.h>
 
 
@@ -70,6 +71,7 @@ int main() {
             }
 
             if (collision(&model.bird, &model.pipe)){
+                play_collision_effect();
                 quit = 1;
             }
             
@@ -77,6 +79,7 @@ int main() {
                 pipe_spawn(&model.pipe);
                 clear_pipe(base, &model.pipe);
                 clear_pipe(back_base, &model.pipe);
+                play_pipe_effect();
             }
             
             update_music(timeElapsed);
@@ -85,6 +88,7 @@ int main() {
             bird_flap(&model.bird);
             clear_bird(base, &model.bird);
             clear_bird(back_base, &model.bird);
+            play_bird_effect();
         }
 
         timeThen = timeNow;
