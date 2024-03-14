@@ -76,6 +76,7 @@ int main() {
             if (pass_pipe(&model.bird, &model.pipe, &model.score)){
                 pipe_spawn(&model.pipe);
                 clear_pipe(base, &model.pipe);
+                clear_pipe(back_base, &model.pipe);
             }
             
             update_music(timeElapsed, &model.music);
