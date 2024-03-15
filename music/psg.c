@@ -1,5 +1,8 @@
 #include "psg.h"
 
+UINT8 reg_value = 0;
+
+
 void write_psg (int reg, UINT8 val) {
   volatile char *PSG_reg_select = 0xFF8800;
   volatile char *PSG_reg_write = 0xFF8802;
@@ -44,10 +47,6 @@ void set_volume (int channel, int volume) {
 }
 
 void enable_channel (int channel, int tone_on, int noise_on) {
-  UINT8 reg_value = 0;
-
-  reg_value = read_psg(7);
-
   if (tone_on) {
     reg_value &= ~(1 << channel);
   }
@@ -66,7 +65,6 @@ void enable_channel (int channel, int tone_on, int noise_on) {
 }
 
 void stop_sound() {
-  UINT32 old_ssp;
   int channel;
   for (channel = 0; channel < 3; channel++) {
     set_volume(channel, 0);
