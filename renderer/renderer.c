@@ -1,5 +1,7 @@
 #include "renderer.h"
 
+#define WHITE 0
+#define BLACK 1
 
 void render(UINT32 *base, UINT8 *base8, Model model) {
     
@@ -37,33 +39,33 @@ void render_bird(UINT32 *base, Bird *bird) {
 }
 
 void clear_bird(UINT32 *base, Bird *bird) {
-    fill_region(base, bird->x, bird->x + BIRD_WIDTH, bird->prev_y, bird->prev_y + BIRD_HEIGHT, 0);
+    fill_region(base, bird->x, bird->x + BIRD_WIDTH, bird->prev_y, bird->prev_y + BIRD_HEIGHT + 5 , WHITE);
 }
 
 void render_pipe(UINT32 *base, Pipes *pipe) {
     pipe->y = 0;
-    fill_region(base, pipe->x, pipe->x + PIPE_WIDTH, 0, pipe->opening_height, 1);
+    fill_region(base, pipe->x, pipe->x + PIPE_WIDTH, 0, pipe->opening_height, BLACK);
     pipe->y = pipe->opening_height + PIPE_OPENING_SIZE;
-    fill_region(base, pipe->x, pipe->x + PIPE_WIDTH, pipe->y, GROUND_Y1, 1);
+    fill_region(base, pipe->x, pipe->x + PIPE_WIDTH, pipe->y, GROUND_Y1, BLACK);
 
 }
 
 void render_pipe_opening(UINT32 *base, int opening_size, int x, int y) {
-    fill_region(base, x, x + PIPE_WIDTH, y, y + opening_size, 0); 
+    fill_region(base, x, x + PIPE_WIDTH, y, y + opening_size, WHITE); 
 }
 
 void clear_pipe(UINT32 *base, Pipes *pipe) {
     pipe->y = 0;
-    fill_region(base, pipe->prev_x, pipe->prev_x + PIPE_WIDTH, pipe->y, GROUND_Y1, 0);
+    fill_region(base, pipe->prev_x, pipe->prev_x + PIPE_WIDTH, pipe->y, GROUND_Y1, WHITE);
     
 }
 
 void render_ground(UINT32 *base) {
-    fill_region(base, GROUND_X1, GROUND_X2, GROUND_Y1, GROUND_Y2, 1);
+    fill_region(base, GROUND_X1, GROUND_X2, GROUND_Y1, GROUND_Y2, BLACK);
 }
 
 void clear_score(UINT32 *base) {
-    fill_region(base, SCORE_X, SCORE_X + 8, SCORE_Y , SCORE_Y + FONT_LENGTH, 0);
+    fill_region(base, SCORE_X, SCORE_X + 8, SCORE_Y , SCORE_Y + FONT_LENGTH, WHITE);
 }
 
 void render_score(UINT8 *base, int x, int y, Score *score) {

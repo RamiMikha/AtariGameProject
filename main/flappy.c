@@ -54,9 +54,25 @@ int main() {
         timeNow = get_time();
         timeElapsed = timeNow - timeThen;
 
+        if (get_input() == ' '){
+            bird_flap(&model.bird);
+            if (switch_bool == 1) {
+                clear_bird(base, &model.bird);
+            }
+            if (switch_bool == 0) {
+                clear_bird(back_base, &model.bird);
+            }
+        }
+
         if (timeElapsed > 0){
             bird_gravity(&model.bird);
-            pipe_move(&model.pipe);
+            pipe_move(&model.pipe);  
+            
+            if (pass_pipe(&model.bird, &model.pipe, &model.score)){
+                pipe_spawn(&model.pipe);
+                clear_pipe(base, &model.pipe);
+                clear_pipe(back_base, &model.pipe);
+            }
 
             /* back buffer */
             if (switch_bool == 0) {
@@ -74,19 +90,11 @@ int main() {
                 quit = 1;
             }
             
-            if (pass_pipe(&model.bird, &model.pipe, &model.score)){
-                pipe_spawn(&model.pipe);
-                clear_pipe(base, &model.pipe);
-                clear_pipe(back_base, &model.pipe);
-            }
+
             
             update_music(timeElapsed);
         }    
-        if (get_input() == ' '){
-            bird_flap(&model.bird);
-            clear_bird(base, &model.bird);
-            clear_bird(back_base, &model.bird);
-        }
+
 
         timeThen = timeNow;
     }
