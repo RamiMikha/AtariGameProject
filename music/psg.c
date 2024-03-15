@@ -64,6 +64,16 @@ void enable_channel (int channel, int tone_on, int noise_on) {
   write_psg (7, reg_value);
 }
 
+void set_noise (int tuning) {
+  write_psg(6, tuning & 0x1F);
+}
+
+void set_envelope (int shape, unsigned int sustain) {
+  write_psg(13, shape & 0x0F);
+  write_psg(12, sustain & 0xFF);
+  write_psg(11, (sustain >> 8) & 0xFF);
+}
+
 void stop_sound() {
   int channel;
   for (channel = 0; channel < 3; channel++) {
