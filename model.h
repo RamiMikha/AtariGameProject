@@ -23,7 +23,9 @@ and the pipe or ground.
 #define GROUND_X2 640
 #define SCORE_Y 60
 #define SCORE_X 10
+#define SCORE_WIDTH 24
 #define FONT_LENGTH 7
+
 #define SCORE_TITLE_Y 50
 #define SCORE_TITLE_X 10
 

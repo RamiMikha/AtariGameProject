@@ -64,7 +64,7 @@ void render_ground(UINT32 *base) {
 }
 
 void clear_score(UINT32 *base) {
-    fill_region(base, SCORE_X, SCORE_X + 8, SCORE_Y , SCORE_Y + FONT_LENGTH, WHITE);
+    fill_region(base, SCORE_X, SCORE_X + SCORE_WIDTH, SCORE_Y , SCORE_Y + FONT_LENGTH, WHITE);
 }
 
 void render_score(UINT8 *base, int x, int y, Score *score) {
