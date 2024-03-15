@@ -1,7 +1,6 @@
 #include "renderer.h"
 
-#define WHITE 0
-#define BLACK 1
+
 
 void render(UINT32 *base, UINT8 *base8, Model model) {
     
