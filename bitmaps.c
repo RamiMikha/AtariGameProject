@@ -105,6 +105,12 @@ const UINT32 flappy_down_bitmap[BIRD_HEIGHT] = {
   0x00000000,
 };
 
+const UINT32 flappy_bitmaps[] = {
+  flappy_bitmap,
+  flappy_middle_bitmap,
+  flappy_down_bitmap,
+};
+
 const UINT32 pipe_section_bitmap[PIPE_SECTION_HEIGHT] = {
    0xFFFFFFFF,
    0xFFFFFFFF,
