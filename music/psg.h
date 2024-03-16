@@ -1,3 +1,12 @@
+/*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+Team Members: Rami Mikha & Jarod Dacocos
+
+The functions in this file are a PSG (Programmable Sound Generator)
+library that support the background music and the sound effects
+of the game. The functions are either responsible for accessing
+the PSG registers, generating sound, or controlling sound.
+------------------------------------------------------------*/
+
 #include <osbind.h>
 #include "..\raster\types.h"
 
