@@ -3,7 +3,7 @@
 typedef struct
 {
     int channel;
-    int tune;
+    int tone;
     int volume;
 
 } Sound;

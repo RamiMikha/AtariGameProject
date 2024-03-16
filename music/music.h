@@ -4,7 +4,7 @@
 #define MUSIC_H
  typedef struct {
     int channel;
-    int tune;
+    int tone;
     int volume;
  } Note;
  
