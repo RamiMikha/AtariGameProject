@@ -5,6 +5,8 @@
 #define BITMAPS_H
 
 extern const UINT32 flappy_bitmap[BIRD_HEIGHT];
+extern const UINT32 flappy_middle_bitmap[BIRD_HEIGHT];
+extern const UINT32 flappy_down_bitmap[BIRD_HEIGHT];
 extern const UINT32 pipe_section_bitmap[PIPE_SECTION_HEIGHT];
 
 extern const UINT8 zero_bitmap[FONT_LENGTH]; 
