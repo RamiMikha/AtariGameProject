@@ -1,3 +1,11 @@
+/*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+Team Members: Rami Mikha & Jarod Dacocos
+
+The file defines arrays of sound effect such as a flap_noise,
+a ping_sound, and a hit_sound using the Programmable Sound
+Generator library.
+------------------------------------------------------------*/
+
 #include "effects.h"
 
 Sound flap_noise[] = {
