@@ -1,3 +1,11 @@
+/*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+Team Members: Rami Mikha & Jarod Dacocos
+
+The arrays in this file are to define various bitmap arrays
+representing the bird along with its animation and letters
+from A-Z and digits 0-9.
+------------------------------------------------------------*/
+
 #include "raster\types.h"
 #include "model.h"
 
