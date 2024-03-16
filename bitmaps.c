@@ -109,6 +109,7 @@ const UINT32 flappy_bitmaps[] = {
   flappy_bitmap,
   flappy_middle_bitmap,
   flappy_down_bitmap,
+  flappy_middle_bitmap
 };
 
 const UINT32 pipe_section_bitmap[PIPE_SECTION_HEIGHT] = {
