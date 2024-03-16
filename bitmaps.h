@@ -7,7 +7,6 @@
 extern const UINT32 flappy_bitmap[BIRD_HEIGHT];
 extern const UINT32 flappy_middle_bitmap[BIRD_HEIGHT];
 extern const UINT32 flappy_down_bitmap[BIRD_HEIGHT];
-const UINT32 flappy_bitmaps[];
 
 extern const UINT32 pipe_section_bitmap[PIPE_SECTION_HEIGHT];
 
