@@ -1,3 +1,11 @@
+/*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+Team Members: Rami Mikha & Jarod Dacocos
+
+The file handles the playback of a musical sequence representing
+the background music of the game using the Programmable Sound
+Generator library.
+------------------------------------------------------------*/
+
 #include "psg.h" 
 
 #ifndef MUSIC_H
