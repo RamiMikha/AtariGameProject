@@ -1,5 +1,5 @@
-flappy: flappy_bird.o  input.o renderer.o raster.o events.o model.o bitmaps.o psg.o music.o effects.o
-	cc68x -g main\flappy.o main\input.o renderer\renderer.o raster\raster.o events\events.o model.o bitmaps.o music\psg.o music\music.o music\effects.o -o flappy
+flappy: flappy_bird.o  input.o renderer.o raster.o raster_asm.o events.o model.o bitmaps.o psg.o music.o effects.o
+	cc68x -g main\flappy.o main\input.o renderer\renderer.o raster\raster.o raster\raster~1.o events\events.o model.o bitmaps.o music\psg.o music\music.o music\effects.o -o flappy
 
 tst_all: tst_ren tst_rast tst_evnt
 
@@ -32,6 +32,9 @@ events.o: events\events.c events\events.h
 
 raster.o: raster\raster.c raster\raster.h
 	cc68x -g -c raster\raster.c
+
+raster_asm.o: raster\raster~1.s
+	gen -D -L2 raster\raster~1.s
 
 model.o: model.c model.h
 	cc68x -g -c model.c
