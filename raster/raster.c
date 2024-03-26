@@ -63,3 +63,20 @@ void fill_region(UINT32 *base, int x1, int x2, int y1, int y2, int color)
         }
     }
 }
+
+UINT16 *get_video_base() {
+	UINT32 base, temp_high, temp_low;
+	UINT8 *high_byte = 0x00FF8201;
+    UINT8 *mid_byte = 0x00FF8203;
+	
+	long old_ssp = Super(0);
+	temp_high = *high_byte;
+	temp_low = *mid_byte;
+	Super(old_ssp);
+
+	base = (temp_high << 16);
+	base |= (temp_low << 8);
+
+    return (UINT16 *) base;
+}
+
