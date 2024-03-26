@@ -5,6 +5,7 @@
 #include "..\music\music.h"
 #include "..\music\effects.h"
 #include <osbind.h>
+#include "..\raster\raster.h"
 
 
 UINT8 back_buffer[32256];
@@ -30,8 +31,8 @@ int align_back_buffer(UINT8 back_buffer[]) {
 }
 
 int main() {
-    UINT32 *base = Physbase();
-    UINT8 *base8 = Physbase();
+    UINT32 *base = (UINT32 *)get_video_base();
+    UINT8 *base8 = (UINT8 *)get_video_base();
     UINT32 *back_base = (UINT32 *)&back_buffer[align_back_buffer(back_buffer)];
     UINT8 *back_base8 = (UINT8 *)back_base;
     Model model;
