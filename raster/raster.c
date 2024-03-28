@@ -16,7 +16,8 @@ void plot_bitmap_32(UINT32 *base, int x, int y, UINT32 *bitmap, unsigned int hei
 	}
 }
 
-void plot_bitmap_8(UINT8 *base, int x, int y, UINT8 *bitmap, unsigned int height) {
+void plot_bitmap_8(UINT32 *base, int x, int y, UINT8 *bitmap, unsigned int height) {
+	UINT8 *base8 = (UINT8 *)base;
 	int screenWidth = 80;
 	int bytes_per_screen = 32000;
 	int offset = (y * screenWidth) + (x >> 3);
@@ -24,7 +25,7 @@ void plot_bitmap_8(UINT8 *base, int x, int y, UINT8 *bitmap, unsigned int height
 	int i;
 	for (i = 0; i < height; i++) {
 		if (offset < bytes_per_screen) {
-			*(base + offset) |= bitmap[i];
+			*(base8 + offset) |= bitmap[i];
 		}
 		offset += screenWidth;
 	}
