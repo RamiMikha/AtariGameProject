@@ -40,6 +40,7 @@ int main() {
     int switch_bool = 0;
     UINT32 timeThen, timeNow, timeElapsed = 0;
     model.score.value = 0;
+    model.bird.frame = 0;
     
     
     /*Setting up initial frame*/
@@ -77,11 +78,19 @@ int main() {
 
             /* back buffer */
             if (switch_bool == 0) {
+                model.bird.frame++;
+                if(model.bird.frame > 2){
+                    model.bird.frame = 0;
+                }
             update_render(back_base, back_base8, model);
             Setscreen(-1,back_base,-1);
             switch_bool = 1;                
             }
             if (switch_bool == 1) {
+                model.bird.frame++;
+                if(model.bird.frame > 2){
+                    model.bird.frame = 0;
+                }
             update_render(base, base8, model);
             Setscreen(-1,base,-1);
             switch_bool = 0;                

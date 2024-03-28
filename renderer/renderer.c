@@ -16,11 +16,13 @@ void render(UINT32 *base, UINT8 *base8, Model model) {
 }
 
 void update_render(UINT32 *base, UINT8 *base8, Model model) {
+
     if(model.bird.y != model.bird.prev_y) {
         clear_bird(base, &model.bird);
         render_bird(base, &model.bird);
         model.bird.prev_y = model.bird.y;
     }
+
     if(model.pipe.x != model.pipe.prev_x) {
         clear_pipe(base, &model.pipe);
         render_pipe(base, &model.pipe);
@@ -33,12 +35,9 @@ void update_render(UINT32 *base, UINT8 *base8, Model model) {
 }
 
 void render_bird(UINT32 *base, Bird *bird) {
-    plot_bitmap_32(base, bird->x, bird->y, flappy_bitmap, BIRD_HEIGHT);
+    plot_bitmap_32(base, bird->x, bird->y, flappy_birds[bird->frame], BIRD_HEIGHT);
 }
 
-void render_bird_down(UINT32 *base, Bird *bird){
-    plot_bitmap_32(base, bird->x, bird->y, flappy_down_bitmap, BIRD_HEIGHT);
-}
 
 void clear_bird(UINT32 *base, Bird *bird) {
     fill_region(base, bird->x, bird->x + BIRD_WIDTH, bird->prev_y, bird->prev_y + BIRD_HEIGHT + 5 , WHITE);
