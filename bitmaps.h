@@ -12,9 +12,8 @@ from A-Z and digits 0-9.
 #ifndef BITMAPS_H
 #define BITMAPS_H
 
-extern const UINT32 flappy_bitmap[BIRD_HEIGHT];
-extern const UINT32 flappy_middle_bitmap[BIRD_HEIGHT];
-extern const UINT32 flappy_down_bitmap[BIRD_HEIGHT];
+
+extern const UINT32 flappy_birds[3];
 
 extern const UINT32 pipe_section_bitmap[PIPE_SECTION_HEIGHT];
 
