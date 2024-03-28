@@ -2,7 +2,7 @@
 
 
 
-void render(UINT32 *base, UINT8 *base8, Model model) {
+void render(UINT32 *base, Model model) {
     
     render_bird(base, &model.bird);
     model.bird.prev_y = model.bird.y;
@@ -11,11 +11,11 @@ void render(UINT32 *base, UINT8 *base8, Model model) {
     model.pipe.prev_x = model.pipe.x;
 
     render_ground(base);
-    render_score(base8, SCORE_X, SCORE_Y, &model.score);
-    render_word(base8, SCORE_TITLE_X, SCORE_TITLE_Y, "SCORE");
+    render_score(base, SCORE_X, SCORE_Y, &model.score);
+    render_word(base, SCORE_TITLE_X, SCORE_TITLE_Y, "SCORE");
 }
 
-void update_render(UINT32 *base, UINT8 *base8, Model model) {
+void update_render(UINT32 *base, Model model) {
 
     if(model.bird.y != model.bird.prev_y) {
         clear_bird(base, &model.bird);
@@ -30,7 +30,7 @@ void update_render(UINT32 *base, UINT8 *base8, Model model) {
     }
     if (model.score.value != model.score.prev_value) {
         clear_score(base);
-        render_score(base8, SCORE_X, SCORE_Y , &model.score);
+        render_score(base, SCORE_X, SCORE_Y , &model.score);
     }
 }
 
@@ -69,7 +69,7 @@ void clear_score(UINT32 *base) {
     fill_region(base, SCORE_X, SCORE_X + SCORE_WIDTH, SCORE_Y , SCORE_Y + FONT_LENGTH, WHITE);
 }
 
-void render_score(UINT8 *base, int x, int y, Score *score) {
+void render_score(UINT32 *base, int x, int y, Score *score) {
     int digit, i;
     int score_copy = score->value;
     int num_width = 8;
@@ -123,7 +123,7 @@ void render_score(UINT8 *base, int x, int y, Score *score) {
     }
 }
 
-void render_word(UINT8 *base, int x, int y, char *word) {
+void render_word(UINT32 *base, int x, int y, char *word) {
     int i;
     int char_width = 8;
 
