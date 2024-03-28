@@ -32,6 +32,7 @@ and the pipe or ground.
 typedef struct {
   unsigned int x,y,prev_y;
   int delta_y;
+  int frame;
 } Bird;
 
 typedef struct {
