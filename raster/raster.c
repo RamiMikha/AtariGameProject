@@ -65,6 +65,16 @@ void fill_region(UINT32 *base, int x1, int x2, int y1, int y2, int color)
     }
 }
 
+void plot_full_screen(UINT32 *base, UINT32 *screen) {
+    int longs_per_screen = 8000;
+  	UINT32 *offset = base;
+  	int x = 0;
+
+  	while (x++ < longs_per_screen) {
+    	*(offset++) = screen[x];
+  	}
+}
+
 UINT16 *get_video_base() {
 	UINT32 base, temp_high, temp_low;
 	UINT8 *high_byte = 0x00FF8201;
