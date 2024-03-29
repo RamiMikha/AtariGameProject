@@ -137,5 +137,5 @@ Inputs:
 
 void render_word(UINT32 *base, int x, int y, char *word);
 
-
+void render_splash_screen(UINT32 *base);
 #endif

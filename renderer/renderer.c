@@ -214,3 +214,7 @@ void render_word(UINT32 *base, int x, int y, char *word) {
         x += char_width;
     }
 }
+
+void render_splash_screen(UINT32 *base) {
+    plot_full_screen(base, splash_screen);
+}
