@@ -76,6 +76,13 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
     }
 }
 
+void load_splash_screen(UINT32 *base) {
+    render_splash_screen(base);
+    while(get_input() != ' '){
+        ;
+    }
+}
+
 int main() {
     UINT32 *base = (UINT32 *)get_video_base();
     UINT32 *back_base = (UINT32 *)&back_buffer[align_back_buffer(back_buffer)];
@@ -84,6 +91,8 @@ int main() {
     model.score.value = 0;
     model.bird.frame = 0;
     
+    
+    load_splash_screen(base);
     
     /*Setting up initial frame*/
     clear_screen(base);
