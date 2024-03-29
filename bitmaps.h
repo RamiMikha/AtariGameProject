@@ -54,7 +54,7 @@ extern const UINT8 X_bitmap[FONT_LENGTH];
 extern const UINT8 Y_bitmap[FONT_LENGTH];
 extern const UINT8 Z_bitmap[FONT_LENGTH];
 
-extern const UINT16 splashscreen[640];
+extern const UINT32 splash_screen[8000];
 
 
 #endif
