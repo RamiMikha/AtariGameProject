@@ -12,8 +12,11 @@ from A-Z and digits 0-9.
 #ifndef BITMAPS_H
 #define BITMAPS_H
 
+#define bird_frames 3
+#define splash_screen_length 8000
 
-extern const UINT32 flappy_birds[3];
+
+extern const UINT32 flappy_birds[bird_frames];
 
 extern const UINT32 pipe_section_bitmap[PIPE_SECTION_HEIGHT];
 
@@ -54,7 +57,7 @@ extern const UINT8 X_bitmap[FONT_LENGTH];
 extern const UINT8 Y_bitmap[FONT_LENGTH];
 extern const UINT8 Z_bitmap[FONT_LENGTH];
 
-extern const UINT32 splash_screen[8000];
+extern const UINT32 splash_screen[splash_screen_length];
 
 
 #endif
