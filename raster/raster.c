@@ -91,3 +91,17 @@ UINT16 *get_video_base() {
     return (UINT16 *) base;
 }
 
+void set_video_base(UINT16 *base_address) {
+	UINT32 base = (UINT32) base_address;
+	UINT8 high_byte = (base >> 16);
+	UINT8 low_byte = (base >> 8);
+
+	UINT8 *high_byte_ptr = 0x00FF8201;
+	UINT8 *low_byte_ptr = 0x00FF8203;
+
+	long old_ssp = Super(0);
+	*high_byte_ptr = high_byte;
+	*low_byte_ptr = low_byte;
+	Super(old_ssp);
+}
+
