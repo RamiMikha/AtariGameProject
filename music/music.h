@@ -9,17 +9,13 @@ Generator library.
 #include "psg.h" 
 
 #ifndef MUSIC_H
-#define MUSIC_H
- typedef struct {
-    int channel;
-    int tone;
-    int volume;
- } Note;
- 
+#define MUSIC_H 
 typedef struct {
+    int* channel;
+    int* tone;
+    int* volume;
     int current_note;
     UINT32 time_since_last_note;
-    Note* song;
 } Music;
 
 /*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
