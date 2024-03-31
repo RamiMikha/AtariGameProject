@@ -53,7 +53,7 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
                     model.bird.frame = 0;
                 }
             update_render(back_base, model);
-            Setscreen(-1,back_base,-1);
+            set_video_base((UINT16 *)back_base);
             buffer_switch_bool = 1;                
             }
 
@@ -63,7 +63,7 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
                     model.bird.frame = 0;
                 }
             update_render(base, model);
-            Setscreen(-1,base,-1);
+            set_video_base((UINT16 *)base);
             buffer_switch_bool = 0;                
             }
 
