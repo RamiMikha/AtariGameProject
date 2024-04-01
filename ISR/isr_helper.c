@@ -1,11 +1,11 @@
-#include "vbl_helper.h"
+#include "isr_helper.h"
 
 int seconds = 0;
 int count = 0;
 int render_request = 0;
 
 /*This ISR is not being used in the game*/
-void do_VBL_ISR()
+/*void do_VBL_ISR()
 {
     count++;
     if (count == 70){
@@ -24,6 +24,11 @@ void do_VBL_ISR()
         pipe_spawn();
     }
     render_request = 1;
+}*/
+
+
+void do_IKBD_ISR(){
+    
 }
 
 Vector install_vector(int num, Vector vector){
@@ -36,5 +41,7 @@ Vector install_vector(int num, Vector vector){
 
 	Super(old_ssp);
 	return orig;
+
+}
 
 }
