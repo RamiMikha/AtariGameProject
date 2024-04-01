@@ -12,23 +12,17 @@ void pipe_move(Pipes *pipe) {
 }
 
 void pipe_spawn(Pipes *pipe) {
-    int pipe_spawn_x_coordinate = 600;
-    int pipe_spawn_y_coordinate = 0;
-    
     pipe->prev_x = pipe->x;
-    pipe->x = pipe_spawn_x_coordinate;
-    pipe->y = pipe_spawn_y_coordinate;
+    pipe->x = PIPE_SPAWN_X_COORDINATE;
+    pipe->y = PIPE_SPAWN_Y_COORDINATE;
 
     /*'%200 + 50' limits the height to be between 50 to 250 pixels down on screen */
-    pipe->opening_height = rand() % 200 + 50;
+    pipe->opening_height = rand() % MAX_PIPE_OPENING_HEIGHT + MIN_PIPE_OPENING_HEIGHT;
 }
 
 void bird_spawn(Bird *bird) {
-    int bird_spawn_x_coordinate = 120;
-    int bird_spawn_y_coordinate = 100;
-    
-    bird->x = bird_spawn_x_coordinate;
-    bird->y = bird_spawn_y_coordinate;
+    bird->x = BIRD_SPAWN_X_COORDINATE;
+    bird->y = BIRD_SPAWN_Y_COORDINATE;
 }
 
 /* Unsynchronized Events*/
