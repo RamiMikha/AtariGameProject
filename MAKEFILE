@@ -1,5 +1,5 @@
-flappy: flappy_bird.o  input.o renderer.o raster.o raster_asm.o events.o model.o bitmaps.o psg.o music.o effects.o
-	cc68x -g main\flappy.o main\input.o renderer\renderer.o raster\raster.o raster\raster~1.o events\events.o model.o bitmaps.o music\psg.o music\music.o music\effects.o -o flappy
+flappy: flappy_bird.o  input.o renderer.o raster.o raster_asm.o events.o model.o bitmaps.o psg.o music.o effects.o isr_helper.o isr.o
+	cc68x -g main\flappy.o main\input.o renderer\renderer.o raster\raster.o raster\raster~1.o events\events.o model.o bitmaps.o music\psg.o music\music.o music\effects.o ISR\isr_he~1.o ISR\isr.o -o flappy
 
 tst_all: tst_ren tst_rast tst_evnt
 
@@ -60,5 +60,11 @@ flappy_bird.o: main\flappy.c renderer\renderer.h raster\raster.h events\events.h
 input.o: main\input.c main\input.h
 	cc68x -g -c main\input.c
 
+isr.o: ISR\isr.s
+	gen -D -L2 ISR\isr.s
+
+isr_helper.o: ISR\isr_he~1.c ISR\isr_he~1.h
+	cc68x -g -c ISR\isr_he~1.c
+
 clean: 
-	$(RM) *.o renderer\*.o raster\*.o  events\*.o main\*.o music\*.o
+	$(RM) *.o renderer\*.o raster\*.o  events\*.o main\*.o music\*.o ISR\*.o
