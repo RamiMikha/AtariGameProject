@@ -18,6 +18,13 @@ condition-based events (such as collisions).
 #define PIPE_SPEED -10
 #define FLAP -10
 
+#define PIPE_SPAWN_X_COORDINATE 600
+#define PIPE_SPAWN_Y_COORDINATE 0
+#define MIN_PIPE_OPENING_HEIGHT 50
+#define MAX_PIPE_OPENING_HEIGHT 200
+#define BIRD_SPAWN_X_COORDINATE 120
+#define BIRD_SPAWN_Y_COORDINATE 100
+
 /* Synchronized Events*/
 
 /*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
