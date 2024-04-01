@@ -8,7 +8,7 @@ int tones[] = {0x1AC, 0x17D, 0x1AC, 0x140, 0x153, 0x1AC, 0x17D, 0x1AC, 0x11D, 0x
 int volumes[] = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
 
 
-UINT32 NOTE_DURATION = 20;
+const UINT32 NOTE_DURATION = 20;
 Music music;
 
 void start_music(){

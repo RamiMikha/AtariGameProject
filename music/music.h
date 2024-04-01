@@ -10,6 +10,9 @@ Generator library.
 
 #ifndef MUSIC_H
 #define MUSIC_H 
+
+extern const UINT32 NOTE_DURATION;
+
 typedef struct {
     int* channel;
     int* tone;
