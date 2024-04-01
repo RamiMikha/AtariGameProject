@@ -15,7 +15,8 @@ UINT32 get_time() {
 
 int align_back_buffer(UINT8 back_buffer[]) {
     int index = 0;
-    while ((UINT32)&back_buffer[index] % 256 != 0) {
+    int byte_aligner = 256;
+    while ((UINT32)&back_buffer[index] % byte_aligner != 0) {
         index++;
     }
     return index;
