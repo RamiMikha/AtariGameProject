@@ -4,13 +4,11 @@ int seconds = 0;
 int count = 0;
 int render_request = 0;
 
-
-
-volatile char * const IKBD_control = 0xFFFC00;
-volatile char * const IKBD_status = 0xFFFC00;
-volatile char * const MIDI_register = 0xFFFC04;
-volatile  SCANCODE * const IKBD_RDR = 0xFFFC02;
-volatile char * const MFP_B_REG = 0xFFFA11;
+volatile char * const IKBD_control = (volatile char *)IKBD_BASE_ADDRESS;
+volatile char * const IKBD_status = (volatile char *)IKBD_BASE_ADDRESS;
+volatile char * const MIDI_register = (volatile char *)MIDI_REGISTER_ADDRESS;
+volatile  SCANCODE * const IKBD_RDR = (volatile SCANCODE *)IKBD_RDR_ADDRESS;
+volatile char * const MFP_B_REG = (volatile char *)MFP_8_REGISTER_ADDRESS;
 
 int state = KEY;
 int mouse_x_value = 0, mouse_y_value = 0;
