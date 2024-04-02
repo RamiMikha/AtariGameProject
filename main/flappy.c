@@ -1,8 +1,8 @@
 #include "flappy.h"
-UINT8 back_buffer[32256];
+UINT8 back_buffer[BACK_BUFFER];
 
 UINT32 get_time() {
-    long *timer = (long *)0x462;
+    long *timer = (long *)TIMER_MEMORY_ADDRESS;
     long timeNow;
     long old_ssp;
 
@@ -15,8 +15,7 @@ UINT32 get_time() {
 
 int align_back_buffer(UINT8 back_buffer[]) {
     int index = 0;
-    int byte_aligner = 256;
-    while ((UINT32)&back_buffer[index] % byte_aligner != 0) {
+    while ((UINT32)&back_buffer[index] % BACK_BUFFER_ALIGNER != 0) {
         index++;
     }
     return index;
