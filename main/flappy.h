@@ -11,6 +11,10 @@
 #ifndef FLAPPY_H
 #define FLAPPY_H
 
+#define BACK_BUFFER 32256
+#define TIMER_MEMORY_ADDRESS 0x462
+#define BACK_BUFFER_ALIGNER 256
+
 UINT32 get_time();
 
 int align_back_buffer(UINT8 back_buffer[]);
