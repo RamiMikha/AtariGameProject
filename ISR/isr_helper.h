@@ -4,6 +4,11 @@
 #include "..\music\music.h"
 #include "..\events\events.h"
 
+#define IKBD_BASE_ADDRESS 0xFFFC00
+#define IKBD_RDR_ADDRESS 0xFFFC02
+#define MIDI_REGISTER_ADDRESS 0xFFFC04
+#define MFP_8_REGISTER_ADDRESS  0xFFFA11
+
 #define VBL 28
 #define IKBD 70
 
