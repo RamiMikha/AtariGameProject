@@ -25,11 +25,16 @@ int align_back_buffer(UINT8 back_buffer[]) {
 void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, UINT32 timeElapsed, Model model){
     int quit = 0;
     int buffer_switch_bool = 0;
+    int input = 0;
     while(!quit){
         timeNow = get_time();
         timeElapsed = timeNow - timeThen;
 
-        if (get_input() == ' '){
+        if(key_buffer_head != key_buffer_tail){
+            input = dequeue_key();
+        }
+
+        if (input == 0x39){
             bird_flap(&model.bird);
             if (buffer_switch_bool == 1) {
                 clear_bird(base, &model.bird);
@@ -78,10 +83,14 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
 }
 
 void load_splash_screen(UINT32 *base) {
+    int input = 0;
     render_splash_screen(base);
-    while(get_input() != ' '){
-        ;
+    while(input != 0x39){
+        if(key_buffer_head != key_buffer_tail){
+            input = dequeue_key();
+        }
     }
+
 }
 
 int main() {
@@ -89,10 +98,11 @@ int main() {
     UINT32 *back_base = (UINT32 *)&back_buffer[align_back_buffer(back_buffer)];
     UINT32 timeThen, timeNow, timeElapsed = 0;
     Model model;
+    Vector orig_vector = install_vector(IKBD, IKBD_isr);
     model.score.value = 0;
     model.bird.frame = 0;
     
-    
+    disable_midi_interrupt();
     load_splash_screen(base);
     
     /*Setting up initial frame*/
@@ -105,5 +115,7 @@ int main() {
     start_music();
     run_game(base, back_base, timeThen, timeNow, timeElapsed, model);
     stop_sound();
+    enable_midi_interrupt();
+    install_vector(IKBD, orig_vector);
     return 0;
 }
