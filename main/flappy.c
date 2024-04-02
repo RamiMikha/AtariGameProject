@@ -33,7 +33,7 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
             input = dequeue_key();
         }
 
-        if (input == 0x39){
+        if (input == SPACEASCII){
             bird_flap(&model.bird);
             if (buffer_switch_bool == 1) {
                 clear_bird(base, &model.bird);
@@ -84,7 +84,7 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
 void load_splash_screen(UINT32 *base) {
     int input = 0;
     render_splash_screen(base);
-    while(input != 0x39){
+    while(input != SPACEASCII){
         if(key_buffer_head != key_buffer_tail){
             input = dequeue_key();
         }
