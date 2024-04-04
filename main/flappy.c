@@ -14,11 +14,10 @@ UINT32 get_time() {
 }
 
 int align_back_buffer(UINT8 back_buffer[]) {
-    int index = 0;
-    while ((UINT32)&back_buffer[index] % BACK_BUFFER_ALIGNER != 0) {
-        index++;
-    }
-    return index;
+    UINT32 address = (UINT32)back_buffer;
+    /*Adds 256-1 to make sure the address is slightly above a 256 byte aligned location
+    then rounds down to the nearest 256 aligned byte using bitwise AND, then subtracts original address to get index*/
+    return ((address + BACK_BUFFER_ALIGNER - 1) & ~(BACK_BUFFER_ALIGNER - 1)) - address;
 }
 
 void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, UINT32 timeElapsed, Model model){
@@ -59,6 +58,7 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
                 }
             update_render(back_base, model);
             set_video_base((UINT16 *)back_base);
+            
             buffer_switch_bool = 1;                
             }
 
@@ -69,6 +69,7 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
                 }
             update_render(base, model);
             set_video_base((UINT16 *)base);
+            
             buffer_switch_bool = 0;                
             }
 
