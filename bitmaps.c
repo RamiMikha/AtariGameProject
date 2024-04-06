@@ -147,6 +147,17 @@ const UINT32 pipe_section_bitmap[PIPE_SECTION_HEIGHT] = {
 
 };
 
+const UINT8 mouse_bitmap[MOUSE_LENGTH] = {
+    0xff,
+    0x81,
+    0x81,
+    0x81,
+    0x81,
+    0x81,
+    0x81,
+    0xff
+};
+
 const UINT8 zero_bitmap[FONT_LENGTH] = {
     0x00, 
     0x18, 

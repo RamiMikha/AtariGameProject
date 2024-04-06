@@ -14,6 +14,7 @@ from A-Z and digits 0-9.
 
 #define BIRD_FRAMES 3
 #define SPLASH_SCREEN_LENGTH 8000
+#define MOUSE_LENGTH 8
 
 
 extern const UINT32 flappy_birds[BIRD_FRAMES];
