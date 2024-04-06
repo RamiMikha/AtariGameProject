@@ -7,6 +7,7 @@
 #include <osbind.h>
 #include "..\raster\raster.h"
 #include "..\ISR\ISR_he~1.h"
+#include <stdio.h>
 
 #ifndef FLAPPY_H
 #define FLAPPY_H
@@ -15,6 +16,7 @@
 #define TIMER_MEMORY_ADDRESS 0x462
 #define BACK_BUFFER_ALIGNER 256
 #define SPACEASCII 0x39
+#define LEFT_BUTTON_PRESS 0xFA
 
 UINT32 get_time();
 

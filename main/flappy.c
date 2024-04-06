@@ -84,10 +84,25 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
 
 void load_splash_screen(UINT32 *base) {
     int input = 0;
+    int start = 0;
     render_splash_screen(base);
-    while(input != SPACEASCII){
+    while(!start){
         if(key_buffer_head != key_buffer_tail){
             input = dequeue_key();
+            if (input == SPACEASCII){
+                start = 1;
+            }
+        }
+        if (mouse_button_state == LEFT_BUTTON_PRESS){
+            if(mouse_x_value >= SPLASH_PLAY_BUTTON_X && mouse_x_value <= SPLASH_PLAY_BUTTON_X + SPLASH_BUTTONS_WIDTH 
+                && mouse_y_value >= SPLASH_PLAY_BUTTON_Y && mouse_y_value <= SPLASH_PLAY_BUTTON_Y + FONT_LENGTH){
+                start = 1;
+            } 
+            else if (mouse_x_value >= SPLASH_QUIT_BUTTON_X && mouse_x_value <= SPLASH_QUIT_BUTTON_X + SPLASH_BUTTONS_WIDTH 
+                && mouse_y_value >= SPLASH_QUIT_BUTTON_Y && mouse_y_value <= SPLASH_QUIT_BUTTON_Y + FONT_LENGTH){
+                /*Exit Game*/
+            }
+
         }
     }
 
