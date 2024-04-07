@@ -35,21 +35,13 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
 
         if (input == SPACEASCII){
             bird_flap(&model.bird);
-            if (buffer_switch_bool == 1) {
-                clear_bird(base, &model.bird);
-            }
-            if (buffer_switch_bool == 0) {
-                clear_bird(back_base, &model.bird);
-            }
         }
 
-        if (timeElapsed > 0){
+        if (render_request){
             bird_gravity(&model.bird);
             pipe_move(&model.pipe);  
             if (pass_pipe(&model.bird, &model.pipe, &model.score)){
                 pipe_spawn(&model.pipe);
-                clear_pipe(base, &model.pipe);
-                clear_pipe(back_base, &model.pipe);
             }
 
             if (buffer_switch_bool == 0) {
@@ -80,6 +72,7 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
             update_music(timeElapsed);
         }
         timeThen = timeNow;
+        render_request = 0;
     }
 }
 
@@ -120,7 +113,8 @@ int main() {
     UINT32 *back_base = (UINT32 *)&back_buffer[align_back_buffer(back_buffer)];
     UINT32 timeThen, timeNow, timeElapsed = 0;
     Model model;
-    Vector orig_vector = install_vector(IKBD, IKBD_isr);
+    Vector IKBD_orig_vector = install_vector(IKBD, IKBD_isr);
+    Vector VBL_orig_vector = install_vector(VBL, VBL_isr);
     model.score.value = 0;
     model.bird.frame = 0;
     
@@ -138,6 +132,7 @@ int main() {
     run_game(base, back_base, timeThen, timeNow, timeElapsed, model);
     stop_sound();
     enable_midi_interrupt();
-    install_vector(IKBD, orig_vector);
+    install_vector(IKBD, IKBD_orig_vector);
+    install_vector(VBL, VBL_orig_vector);
     return 0;
 }
