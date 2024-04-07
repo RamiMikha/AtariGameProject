@@ -69,6 +69,7 @@ void clear_score(UINT32 *base) {
     fill_region(base, SCORE_X, SCORE_X + SCORE_WIDTH, SCORE_Y , SCORE_Y + FONT_LENGTH, WHITE);
 }
 
+
 void render_score(UINT32 *base, int x, int y, Score *score) {
     int digit, i;
     int score_copy = score->value;
@@ -219,4 +220,9 @@ void render_splash_screen(UINT32 *base) {
     plot_full_screen(base, splash_screen);
     render_word(base, SPLASH_PLAY_BUTTON_X, SPLASH_PLAY_BUTTON_Y, "PLAY GAME");
     render_word(base, SPLASH_QUIT_BUTTON_X, SPLASH_QUIT_BUTTON_Y, "QUIT GAME");
+}
+/*This function does not clear the mouse properly*/
+void render_mouse(UINT32 *base) {
+    fill_region(base, mouse_x_prev, mouse_x_prev + MOUSE_LENGTH, mouse_y_prev, mouse_y_prev + MOUSE_LENGTH, WHITE);
+    plot_bitmap_8(base, mouse_x_value, mouse_y_value, mouse_bitmap, MOUSE_LENGTH);
 }

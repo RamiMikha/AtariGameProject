@@ -16,7 +16,8 @@ pipe.
 #include <stdlib.h>
 #include "..\model.h"
 #include "..\raster\raster.h"
-#include "../bitmaps.h"
+#include "..\bitmaps.h"
+#include "..\ISR\ISR_he~1.h"
 
 
 #define WHITE 0
@@ -143,4 +144,6 @@ Inputs:
 void render_word(UINT32 *base, int x, int y, char *word);
 
 void render_splash_screen(UINT32 *base);
+
+void render_mouse(UINT32 *base);
 #endif
