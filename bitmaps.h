@@ -21,6 +21,8 @@ extern const UINT32 flappy_birds[BIRD_FRAMES];
 
 extern const UINT32 pipe_section_bitmap[PIPE_SECTION_HEIGHT];
 
+extern const UINT8 mouse_bitmap[MOUSE_LENGTH];
+
 extern const UINT8 zero_bitmap[FONT_LENGTH]; 
 extern const UINT8 one_bitmap[FONT_LENGTH];
 extern const UINT8 two_bitmap[FONT_LENGTH];
