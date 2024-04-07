@@ -11,7 +11,7 @@ volatile  SCANCODE * const IKBD_RDR = (volatile SCANCODE *)IKBD_RDR_ADDRESS;
 volatile char * const MFP_B_REG = (volatile char *)MFP_8_REGISTER_ADDRESS;
 
 int state = KEY;
-int mouse_x_value = 0, mouse_y_value = 0, mouse_button_state = 0;
+int mouse_x_value = 0, mouse_y_value = 0, mouse_button_state = 0, mouse_x_prev = 0, mouse_y_prev = 0;
 int key_buffer[KEY_BUFFER_SIZE];
 int key_buffer_head = 0;
 int key_buffer_tail = 0;
@@ -66,26 +66,28 @@ void enable_midi_interrupt(){
 /*Mouse input not tested yet, and protection of critical sections not done*/
 void do_IKBD_ISR(){
     if(*IKBD_status & DATA_READY){
-        SCANCODE scancode = *IKBD_RDR;
+        SCANCODE scancode =  *IKBD_RDR;
+        signed char mousecode = (signed char) scancode;
+
+        if (scancode == MOUSE_INPUT || scancode == LEFT_BUTTON_PRESS || scancode == RIGHT_BUTTON_PRESS){
+            state = MOUSE_BUTTON;
+        }
         switch (state){
             case KEY:
-                if (scancode == MOUSE_INPUT){
-                    state = MOUSE_BUTTON;
-                }
-                else{
-                    enqueue_key(scancode);
-                }
+                enqueue_key(scancode);
                 break;
             case MOUSE_BUTTON:
-                mouse_button_state = scancode;
+                mouse_button_state = mousecode;
                 state = MOUSE_X;
                 break;
             case MOUSE_X:
-                mouse_x_value += (int)scancode;
+                mouse_x_prev = mouse_x_value;
+                mouse_x_value += mousecode;
                 state = MOUSE_Y;
                 break;
             case MOUSE_Y:
-                mouse_y_value += (int)scancode;
+                mouse_y_prev = mouse_y_value;
+                mouse_y_value += mousecode;
                 state = KEY;
                 break;
         }

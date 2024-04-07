@@ -3,6 +3,7 @@
 
 #include "..\music\music.h"
 #include "..\events\events.h"
+#include <stdio.h>
 
 #define IKBD_BASE_ADDRESS 0xFFFC00
 #define IKBD_RDR_ADDRESS 0xFFFC02
@@ -15,6 +16,8 @@
 #define DATA_READY 0x80
 #define MFP_RECIEVE_ON 0x40
 #define MOUSE_INPUT 0xF8
+#define LEFT_BUTTON_PRESS 0xFA
+#define RIGHT_BUTTON_PRESS 0xF9
 #define KEY 0
 #define MOUSE_BUTTON 1
 #define MOUSE_X 2
@@ -30,6 +33,8 @@ extern int key_buffer_tail;
 extern int mouse_x_value;
 extern int mouse_y_value;
 extern int mouse_button_state;
+extern int mouse_x_prev;
+extern int mouse_y_prev;
 Vector install_vector(int num, Vector vector);
 void VBL_isr();
 void do_VBL_ISR();
