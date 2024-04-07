@@ -1,6 +1,8 @@
 #include "flappy.h"
 UINT8 back_buffer[BACK_BUFFER];
 
+int quit = 0;
+
 UINT32 get_time() {
     long *timer = (long *)TIMER_MEMORY_ADDRESS;
     long timeNow;
@@ -21,7 +23,6 @@ int align_back_buffer(UINT8 back_buffer[]) {
 }
 
 void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, UINT32 timeElapsed, Model model){
-    int quit = 0;
     int buffer_switch_bool = 0;
     int input = 0;
     while(!quit){
@@ -93,19 +94,25 @@ void load_splash_screen(UINT32 *base) {
                 start = 1;
             }
         }
-        if (mouse_button_state == LEFT_BUTTON_PRESS){
+        if (mouse_x_value != mouse_x_prev || mouse_y_value != mouse_y_prev){
+            render_mouse(base);
+        }
+
+            /*Does not check for mouse button click
+            when check was added it did not work*/
             if(mouse_x_value >= SPLASH_PLAY_BUTTON_X && mouse_x_value <= SPLASH_PLAY_BUTTON_X + SPLASH_BUTTONS_WIDTH 
                 && mouse_y_value >= SPLASH_PLAY_BUTTON_Y && mouse_y_value <= SPLASH_PLAY_BUTTON_Y + FONT_LENGTH){
-                start = 1;
+                    start = 1;
+
             } 
-            else if (mouse_x_value >= SPLASH_QUIT_BUTTON_X && mouse_x_value <= SPLASH_QUIT_BUTTON_X + SPLASH_BUTTONS_WIDTH 
+            else if(mouse_x_value >= SPLASH_QUIT_BUTTON_X && mouse_x_value <= SPLASH_QUIT_BUTTON_X + SPLASH_BUTTONS_WIDTH 
                 && mouse_y_value >= SPLASH_QUIT_BUTTON_Y && mouse_y_value <= SPLASH_QUIT_BUTTON_Y + FONT_LENGTH){
-                /*Exit Game*/
+                    if(mouse_button_state == LEFT_BUTTON_PRESS){
+                        quit = 1;
+                    }
             }
-
-        }
+        
     }
-
 }
 
 int main() {

@@ -7,7 +7,7 @@
 #include <osbind.h>
 #include "..\raster\raster.h"
 #include "..\ISR\ISR_he~1.h"
-#include <stdio.h>
+
 
 #ifndef FLAPPY_H
 #define FLAPPY_H
