@@ -78,43 +78,19 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
 
 }
 
-void load_splash_screen(UINT32 *base) {
-    int input = 0;
-    int start = 0;
-    render_splash_screen(base);
-    while(!start && !quit){
-        if(key_buffer_head != key_buffer_tail){
-            input = dequeue_key();
-            if (input == SPACEASCII){
-                start = 1;
-            }
-        }
-        if (mouse_x_value != mouse_x_prev || mouse_y_value != mouse_y_prev){
-            render_mouse(base);
-        }
 
-            /*Does not check for mouse button click
-            when check was added it did not work*/
-            if(mouse_x_value >= SPLASH_PLAY_BUTTON_X && mouse_x_value <= SPLASH_PLAY_BUTTON_X + SPLASH_BUTTONS_WIDTH 
-                && mouse_y_value >= SPLASH_PLAY_BUTTON_Y && mouse_y_value <= SPLASH_PLAY_BUTTON_Y + FONT_LENGTH){
-                    start = 1;
 
-            } 
-            if(mouse_x_value >= SPLASH_QUIT_BUTTON_X && mouse_x_value <= SPLASH_QUIT_BUTTON_X + SPLASH_BUTTONS_WIDTH 
-                && mouse_y_value >= SPLASH_QUIT_BUTTON_Y && mouse_y_value <= SPLASH_QUIT_BUTTON_Y + FONT_LENGTH){
-                    quit = 1;
-
-            }
-        
-    }
-}
-
-void load_end_screen(UINT32 *base, Score *score) {
+void load_splash_screen(UINT32 *base, Score *score, int game_state) {
     int input = 0;
     int start = 0;
     quit = 0;
-    score->value = final_score;
-    render_end_screen(base, score);
+    if(game_state == 1){
+        render_end_screen(base, score);
+    }
+    else {
+        render_splash_screen(base);
+    }
+    
     while(!start && !quit){
         if(key_buffer_head != key_buffer_tail){
             input = dequeue_key();
@@ -126,19 +102,18 @@ void load_end_screen(UINT32 *base, Score *score) {
             render_mouse(base);
         }
 
-            /*Does not check for mouse button click
-            when check was added it did not work*/
-            if(mouse_x_value >= SPLASH_PLAY_BUTTON_X && mouse_x_value <= SPLASH_PLAY_BUTTON_X + SPLASH_BUTTONS_WIDTH 
-                && mouse_y_value >= SPLASH_PLAY_BUTTON_Y && mouse_y_value <= SPLASH_PLAY_BUTTON_Y + FONT_LENGTH){
+        if(mouse_button_state == LEFT_BUTTON_PRESS){
+            if((mouse_x_value >= SPLASH_PLAY_BUTTON_X && mouse_x_value <= SPLASH_PLAY_BUTTON_X + SPLASH_BUTTONS_WIDTH 
+                && mouse_y_value >= SPLASH_PLAY_BUTTON_Y && mouse_y_value <= SPLASH_PLAY_BUTTON_Y + FONT_LENGTH)){
                     start = 1;
 
             } 
-            if(mouse_x_value >= SPLASH_QUIT_BUTTON_X && mouse_x_value <= SPLASH_QUIT_BUTTON_X + SPLASH_BUTTONS_WIDTH 
-                && mouse_y_value >= SPLASH_QUIT_BUTTON_Y && mouse_y_value <= SPLASH_QUIT_BUTTON_Y + FONT_LENGTH){
+            else if((mouse_x_value >= SPLASH_QUIT_BUTTON_X && mouse_x_value <= SPLASH_QUIT_BUTTON_X + SPLASH_BUTTONS_WIDTH 
+                && mouse_y_value >= SPLASH_QUIT_BUTTON_Y && mouse_y_value <= SPLASH_QUIT_BUTTON_Y + FONT_LENGTH)){
                     quit = 1;
 
             }
-        
+        }
     }
 }
 
@@ -147,12 +122,14 @@ int main() {
     UINT32 *back_base = (UINT32 *)&back_buffer[align_back_buffer(back_buffer)];
     UINT32 timeThen, timeNow, timeElapsed = 0;
     Model model;
+    int game_state = 0;
     Vector orig_vector = install_vector(IKBD, IKBD_isr);
     model.score.value = 0;
     model.bird.frame = 0;
     
     disable_midi_interrupt();
-    load_splash_screen(base);
+    load_splash_screen(base, &model.score, game_state);
+    game_state = 1;
     
     while(!quit){
         /*Setting up initial frame*/
@@ -168,7 +145,7 @@ int main() {
         stop_sound();
         clear_screen(base);
         clear_screen(back_base);
-        load_end_screen(base, &model.score);
+        load_splash_screen(base, &model.score, game_state);
         model.score.value = 0;
     }
     clear_screen(base);
