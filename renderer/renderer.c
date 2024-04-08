@@ -51,9 +51,6 @@ void render_pipe(UINT32 *base, Pipes *pipe) {
 
 }
 
-void render_pipe_opening(UINT32 *base, int opening_size, int x, int y) {
-    fill_region(base, x, x + PIPE_WIDTH, y, y + opening_size, WHITE); 
-}
 
 void clear_pipe(UINT32 *base, Pipes *pipe) {
     pipe->y = 0;
