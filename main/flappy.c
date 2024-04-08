@@ -35,12 +35,6 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
 
         if (input == SPACEASCII){
             bird_flap(&model.bird);
-            if (buffer_switch_bool == 1) {
-                clear_bird(base, &model.bird);
-            }
-            if (buffer_switch_bool == 0) {
-                clear_bird(back_base, &model.bird);
-            }
         }
 
         if (timeElapsed > 0){
@@ -48,8 +42,6 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
             pipe_move(&model.pipe);  
             if (pass_pipe(&model.bird, &model.pipe, &model.score)){
                 pipe_spawn(&model.pipe);
-                clear_pipe(base, &model.pipe);
-                clear_pipe(back_base, &model.pipe);
             }
 
             if (buffer_switch_bool == 0) {
