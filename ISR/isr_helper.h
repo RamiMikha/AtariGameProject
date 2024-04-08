@@ -32,7 +32,7 @@ extern int key_buffer_head;
 extern int key_buffer_tail;
 extern int mouse_x_value;
 extern int mouse_y_value;
-extern UINT8 mouse_button_state;
+extern int mouse_button_state;
 extern int mouse_x_prev;
 extern int mouse_y_prev;
 Vector install_vector(int num, Vector vector);
