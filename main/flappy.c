@@ -135,6 +135,7 @@ int main() {
         load_splash_screen(base, &model.score, game_state);
         model.score.value = 0;
     }
+    set_video_base((UINT16 *)base);
     enable_midi_interrupt();
     install_vector(IKBD, orig_vector);
     return 0;
