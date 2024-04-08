@@ -23,7 +23,8 @@
 #define MOUSE_X 2
 #define MOUSE_Y 3
 #define KEY_BUFFER_SIZE 256
-
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 400
 typedef void (*Vector) ();
 typedef UINT8 SCANCODE;
 

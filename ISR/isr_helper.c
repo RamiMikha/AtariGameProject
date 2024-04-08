@@ -61,11 +61,15 @@ void do_IKBD_ISR(){
             case MOUSE_X:
                 mouse_x_prev = mouse_x_value;
                 mouse_x_value += mousecode;
+                if (mouse_x_value < 0) mouse_x_value = 0;
+                if (mouse_x_value > SCREEN_WIDTH) mouse_x_value = SCREEN_WIDTH;
                 state = MOUSE_Y;
                 break;
             case MOUSE_Y:
                 mouse_y_prev = mouse_y_value;
                 mouse_y_value += mousecode;
+                if (mouse_y_value < 0) mouse_y_value = 0;
+                if (mouse_y_value > SCREEN_HEIGHT) mouse_y_value = SCREEN_HEIGHT;
                 state = KEY;
                 break;
         }
