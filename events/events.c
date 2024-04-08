@@ -35,8 +35,14 @@ void bird_flap(Bird *bird) {
 /* Condition-Based Events*/
 
 int collision(Bird *bird, Pipes *pipe) {
-    return check_collision(bird, pipe);
-    play_collision_effect();
+    int status = 0;
+    if(check_collision(bird, pipe)){
+        play_collision_effect();
+        status = 1;
+    }
+    
+    return status;
+    
 }
 
 int pass_pipe(Bird *bird, Pipes *pipe, Score *score) {
