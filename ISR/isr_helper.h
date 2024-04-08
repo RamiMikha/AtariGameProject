@@ -36,8 +36,6 @@ extern int mouse_button_state;
 extern int mouse_x_prev;
 extern int mouse_y_prev;
 Vector install_vector(int num, Vector vector);
-void VBL_isr();
-void do_VBL_ISR();
 void IKBD_isr();
 void do_IKBD_ISR();
 
