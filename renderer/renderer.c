@@ -4,6 +4,7 @@
 
 void render(UINT32 *base, Model model) {
     
+    clear_screen(base);
     render_bird(base, &model.bird);
     model.bird.prev_y = model.bird.y;
     
@@ -216,12 +217,14 @@ void render_word(UINT32 *base, int x, int y, char *word) {
 }
 
 void render_splash_screen(UINT32 *base) {
+    clear_screen(base);
     plot_full_screen(base, splash_screen);
     render_word(base, SPLASH_PLAY_BUTTON_X, SPLASH_PLAY_BUTTON_Y, "PLAY GAME");
     render_word(base, SPLASH_QUIT_BUTTON_X, SPLASH_QUIT_BUTTON_Y, "QUIT GAME");
 }
 
 void render_end_screen(UINT32 *base, Score *score) {
+    clear_screen(base);
     plot_full_screen(base, splash_screen);
     render_word(base, GAME_OVER_X, GAME_OVER_Y, "GAME OVER");
     render_word(base, END_SCORE_X, END_SCORE_Y, "SCORE");
