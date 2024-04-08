@@ -24,6 +24,8 @@ int align_back_buffer(UINT8 back_buffer[]);
 
 void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, UINT32 timeElapsed, Model model);
 
+void double_buffer(UINT32 *base, UINT32 *back_base, int buffer_switch_bool, Model model);
+
 void load_splash_screen(UINT32 *base, Score *score, int game_state);
 
 #endif

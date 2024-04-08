@@ -44,31 +44,14 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
                 pipe_spawn(&model.pipe);
             }
 
-            if (buffer_switch_bool == 0) {
-                model.bird.frame++;
-                if(model.bird.frame > 2){
-                    model.bird.frame = 0;
-                }
-            update_render(back_base, model);
-            set_video_base((UINT16 *)back_base);
-            
-            buffer_switch_bool = 1;                
+            model.bird.frame++;
+            if(model.bird.frame > 2){
+                model.bird.frame = 0;
             }
-
-            if (buffer_switch_bool == 1) {
-                model.bird.frame++;
-                if(model.bird.frame > 2){
-                    model.bird.frame = 0;
-                }
-            update_render(base, model);
-            set_video_base((UINT16 *)base);
-            
-            buffer_switch_bool = 0;                
-            }
+            double_buffer(base, back_base, buffer_switch_bool, model);
 
             if (collision(&model.bird, &model.pipe)){
                 final_score = model.score.value;
-
                 quit = 1;
             }
             update_music(timeElapsed);
@@ -78,7 +61,20 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
 
 }
 
+void double_buffer(UINT32 *base, UINT32 *back_base, int buffer_switch_bool, Model model){
+    if (buffer_switch_bool == 0) {
+        update_render(back_base, model);
+        set_video_base((UINT16 *)back_base); 
+        buffer_switch_bool = 1;                
+    }
 
+    if (buffer_switch_bool == 1) {
+        update_render(base, model);
+        set_video_base((UINT16 *)base);
+        buffer_switch_bool = 0;                
+    }
+
+}
 
 void load_splash_screen(UINT32 *base, Score *score, int game_state) {
     int input = 0;
