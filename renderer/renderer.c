@@ -75,53 +75,55 @@ void render_score(UINT32 *base, int x, int y, Score *score) {
     int digit, i;
     int score_copy = score->value;
     int num_width = 8;
-
-    /* Convert score to array of digits*/
     int digits[3];
     int num_digits = 0;
-    while (score_copy > 0) {
-        digit = score_copy % 10;
-        digits[num_digits++] = digit;
-        score_copy /= 10;
-    }
 
-    /*Render each digit*/
-    for (i= num_digits - 1; i>=0; i--) {
-        digit = digits[i];
+    if(score_copy == 0) {
+        plot_bitmap_8(base, x, y, zero_bitmap, FONT_LENGTH);
 
-        switch (digit) {
-            case 0:
-                plot_bitmap_8(base, x, y, zero_bitmap, FONT_LENGTH);
-                break;
-            case 1:
-                plot_bitmap_8(base, x, y, one_bitmap, FONT_LENGTH);
-                break;
-            case 2:
-                plot_bitmap_8(base, x, y, two_bitmap, FONT_LENGTH);
-                break;
-            case 3:
-                plot_bitmap_8(base, x, y, three_bitmap, FONT_LENGTH);
-                break;
-            case 4:
-                plot_bitmap_8(base, x, y, four_bitmap, FONT_LENGTH);
-                break;
-            case 5:
-                plot_bitmap_8(base, x, y, five_bitmap, FONT_LENGTH);
-                break;
-            case 6:
-                plot_bitmap_8(base, x, y, six_bitmap, FONT_LENGTH);
-                break;
-            case 7:
-                plot_bitmap_8(base, x, y, seven_bitmap, FONT_LENGTH);
-                break;
-            case 8:
-                plot_bitmap_8(base, x, y, eight_bitmap, FONT_LENGTH);
-                break;
-            case 9:
-                plot_bitmap_8(base, x, y, nine_bitmap, FONT_LENGTH);
-                break;
+    }else{
+            /* Convert score to array of digits*/
+        while (score_copy > 0) {
+            digit = score_copy % 10;
+            digits[num_digits++] = digit;
+            score_copy /= 10;
         }
-        x += num_width;
+
+        /*Render each digit*/
+        for (i= num_digits - 1; i>=0; i--) {
+            digit = digits[i];
+
+            switch (digit) {
+                case 1:
+                    plot_bitmap_8(base, x, y, one_bitmap, FONT_LENGTH);
+                    break;
+                case 2:
+                    plot_bitmap_8(base, x, y, two_bitmap, FONT_LENGTH);
+                    break;
+                case 3:
+                    plot_bitmap_8(base, x, y, three_bitmap, FONT_LENGTH);
+                    break;
+                case 4:
+                    plot_bitmap_8(base, x, y, four_bitmap, FONT_LENGTH);
+                    break;
+                case 5:
+                    plot_bitmap_8(base, x, y, five_bitmap, FONT_LENGTH);
+                    break;
+                case 6:
+                    plot_bitmap_8(base, x, y, six_bitmap, FONT_LENGTH);
+                    break;
+                case 7:
+                    plot_bitmap_8(base, x, y, seven_bitmap, FONT_LENGTH);
+                    break;
+                case 8:
+                    plot_bitmap_8(base, x, y, eight_bitmap, FONT_LENGTH);
+                    break;
+                case 9:
+                    plot_bitmap_8(base, x, y, nine_bitmap, FONT_LENGTH);
+                    break;
+            }
+            x += num_width;
+        }
     }
 }
 
