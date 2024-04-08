@@ -11,7 +11,8 @@ volatile  SCANCODE * const IKBD_RDR = (volatile SCANCODE *)IKBD_RDR_ADDRESS;
 volatile char * const MFP_B_REG = (volatile char *)MFP_8_REGISTER_ADDRESS;
 
 int state = KEY;
-int mouse_x_value = 0, mouse_y_value = 0, mouse_button_state = 0, mouse_x_prev = 0, mouse_y_prev = 0;
+int mouse_x_value = 0, mouse_y_value = 0, mouse_x_prev = 0, mouse_y_prev = 0;
+UINT8 mouse_button_state;
 int key_buffer[KEY_BUFFER_SIZE];
 int key_buffer_head = 0;
 int key_buffer_tail = 0;
