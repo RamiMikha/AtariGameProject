@@ -81,6 +81,7 @@ void load_splash_screen(UINT32 *base, Score *score, int game_state) {
     int start = 0;
     quit = 0;
     if(game_state == 1){
+        score->value = final_score;
         render_end_screen(base, score);
     }
     else {
