@@ -17,29 +17,6 @@ int key_buffer_head = 0;
 int key_buffer_tail = 0;
 
 
-/*This ISR is not being used in the game*/
-/*void do_VBL_ISR()
-{
-    count++;
-    if (count == 70){
-        seconds++;
-        count = 0;
-    }
-
-    if(seconds > NOTE_DURATION){
-        update_music(seconds);
-        seconds = 0;
-    }
-
-    bird_gravity();
-    pipe_move();
-    if (pass_pipe()){
-        pipe_spawn();
-    }
-    render_request = 1;
-}*/
-
-
 void enqueue_key(int key){
     key_buffer[key_buffer_tail] = key;
     key_buffer_tail = (key_buffer_tail + 1) % KEY_BUFFER_SIZE;
