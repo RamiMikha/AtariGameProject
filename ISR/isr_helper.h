@@ -15,8 +15,6 @@
 
 #define DATA_READY 0x80
 #define MFP_RECIEVE_ON 0x40
-#define IKBD_DISABLE 0x16
-#define IKBD_ENABLE 0x96
 #define MOUSE_INPUT 0xF8
 #define LEFT_BUTTON_PRESS 0xFA
 #define RIGHT_BUTTON_PRESS 0xF9
@@ -30,7 +28,6 @@ typedef void (*Vector) ();
 typedef UINT8 SCANCODE;
 
 extern int render_request;
-extern int count;
 extern int key_buffer_head;
 extern int key_buffer_tail;
 extern int mouse_x_value;

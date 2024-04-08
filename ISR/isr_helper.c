@@ -17,13 +17,27 @@ int key_buffer_head = 0;
 int key_buffer_tail = 0;
 
 
-
-void do_VBL_ISR()
+/*This ISR is not being used in the game*/
+/*void do_VBL_ISR()
 {
-    *IKBD_control = IKBD_DISABLE;
+    count++;
+    if (count == 70){
+        seconds++;
+        count = 0;
+    }
+
+    if(seconds > NOTE_DURATION){
+        update_music(seconds);
+        seconds = 0;
+    }
+
+    bird_gravity();
+    pipe_move();
+    if (pass_pipe()){
+        pipe_spawn();
+    }
     render_request = 1;
-    *IKBD_control = IKBD_ENABLE;
-}
+}*/
 
 
 void enqueue_key(int key){
@@ -51,7 +65,6 @@ void enable_midi_interrupt(){
 
 /*Mouse input not tested yet, and protection of critical sections not done*/
 void do_IKBD_ISR(){
-
     if(*IKBD_status & DATA_READY){
         SCANCODE scancode =  *IKBD_RDR;
         signed char mousecode = (signed char) scancode;
