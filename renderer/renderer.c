@@ -1,6 +1,7 @@
 #include "renderer.h"
 
 
+UINT8 back_fill_bitmap[MOUSE_LENGTH];
 
 void render(UINT32 *base, Model model) {
     
@@ -221,8 +222,27 @@ void render_splash_screen(UINT32 *base) {
     render_word(base, SPLASH_PLAY_BUTTON_X, SPLASH_PLAY_BUTTON_Y, "PLAY GAME");
     render_word(base, SPLASH_QUIT_BUTTON_X, SPLASH_QUIT_BUTTON_Y, "QUIT GAME");
 }
-/*This function does not clear the mouse properly*/
+
 void render_mouse(UINT32 *base) {
-    fill_region(base, mouse_x_prev, mouse_x_prev + MOUSE_LENGTH, mouse_y_prev, mouse_y_prev + MOUSE_LENGTH, WHITE);
-    plot_bitmap_8(base, mouse_x_value, mouse_y_value, mouse_bitmap, MOUSE_LENGTH);
+	UINT8 *base8 = (UINT8 *)base;
+    int offset,i;
+    /*Clearing old mouse*/
+	offset = (mouse_y_prev * SCREEN_WIDTH_8) + (mouse_x_prev >> 3);
+	for (i = 0; i < MOUSE_LENGTH; i++) {
+		if (offset < BYTES_PER_SCREEN) {
+			*(base8 + offset) ^= mouse_bitmap[i];
+		}
+		offset += SCREEN_WIDTH_8;
+	}
+
+    /*Plotting new mouse*/
+	offset = (mouse_y_value * SCREEN_WIDTH_8) + (mouse_x_value >> 3);
+
+	for (i = 0; i < MOUSE_LENGTH; i++) {
+		if (offset < BYTES_PER_SCREEN) {
+			*(base8 + offset) ^= mouse_bitmap[i];
+		}
+		offset += SCREEN_WIDTH_8;
+	}
+
 }
