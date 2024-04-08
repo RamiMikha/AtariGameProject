@@ -223,13 +223,22 @@ void render_splash_screen(UINT32 *base) {
     render_word(base, SPLASH_QUIT_BUTTON_X, SPLASH_QUIT_BUTTON_Y, "QUIT GAME");
 }
 
+void render_end_screen(UINT32 *base, Score *score) {
+    plot_full_screen(base, splash_screen);
+    render_word(base, GAME_OVER_X, GAME_OVER_Y, "GAME OVER");
+    render_word(base, END_SCORE_X, END_SCORE_Y, "SCORE");
+    render_score(base, END_SCORE_VALUE_X, END_SCORE_VALUE_Y, score);
+    render_word(base, SPLASH_PLAY_BUTTON_X, SPLASH_PLAY_BUTTON_Y, "PLAY GAME");
+    render_word(base, SPLASH_QUIT_BUTTON_X, SPLASH_QUIT_BUTTON_Y, "QUIT GAME");
+}
+
 void render_mouse(UINT32 *base) {
 	UINT8 *base8 = (UINT8 *)base;
     int offset,i;
     /*Clearing old mouse*/
 	offset = (mouse_y_prev * SCREEN_WIDTH_8) + (mouse_x_prev >> 3);
-	for (i = 0; i < MOUSE_LENGTH; i++) {
-		if (offset < BYTES_PER_SCREEN) {
+	for (i = 0; i < MOUSE_LENGTH; i++){
+		if (offset < BYTES_PER_SCREEN){
 			*(base8 + offset) ^= mouse_bitmap[i];
 		}
 		offset += SCREEN_WIDTH_8;
@@ -238,8 +247,8 @@ void render_mouse(UINT32 *base) {
     /*Plotting new mouse*/
 	offset = (mouse_y_value * SCREEN_WIDTH_8) + (mouse_x_value >> 3);
 
-	for (i = 0; i < MOUSE_LENGTH; i++) {
-		if (offset < BYTES_PER_SCREEN) {
+	for (i = 0; i < MOUSE_LENGTH; i++){
+		if (offset < BYTES_PER_SCREEN){
 			*(base8 + offset) ^= mouse_bitmap[i];
 		}
 		offset += SCREEN_WIDTH_8;

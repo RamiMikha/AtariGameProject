@@ -26,6 +26,12 @@ pipe.
 #define SPLASH_PLAY_BUTTON_Y 175
 #define SPLASH_QUIT_BUTTON_X 550
 #define SPLASH_QUIT_BUTTON_Y 175
+#define GAME_OVER_X 290
+#define GAME_OVER_Y 250
+#define END_SCORE_X 310
+#define END_SCORE_Y 260
+#define END_SCORE_VALUE_X 320
+#define END_SCORE_VALUE_Y 270
 #define SPLASH_BUTTONS_WIDTH 72
 
 /*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
@@ -144,6 +150,8 @@ Inputs:
 void render_word(UINT32 *base, int x, int y, char *word);
 
 void render_splash_screen(UINT32 *base);
+
+void render_end_screen(UINT32 *base, Score *score);
 
 void render_mouse(UINT32 *base);
 #endif
