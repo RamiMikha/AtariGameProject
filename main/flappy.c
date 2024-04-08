@@ -89,12 +89,6 @@ void load_splash_screen(UINT32 *base, Score *score, int game_state) {
     }
     
     while(!start && !quit){
-        if(key_buffer_head != key_buffer_tail){
-            input = dequeue_key();
-            if (input == SPACEASCII){
-                start = 1;
-            }
-        }
         if (mouse_x_value != mouse_x_prev || mouse_y_value != mouse_y_prev){
             render_mouse(base);
         }
@@ -130,23 +124,17 @@ int main() {
     
     while(!quit){
         /*Setting up initial frame*/
-        clear_screen(base);
         bird_spawn(&model.bird);
         pipe_spawn(&model.pipe);
         render(base, model);
         render(back_base, model);
 
-
         start_music();
         run_game(base, back_base, timeThen, timeNow, timeElapsed, model);
         stop_sound();
-        clear_screen(base);
-        clear_screen(back_base);
         load_splash_screen(base, &model.score, game_state);
         model.score.value = 0;
     }
-    clear_screen(base);
-
     enable_midi_interrupt();
     install_vector(IKBD, orig_vector);
     return 0;
