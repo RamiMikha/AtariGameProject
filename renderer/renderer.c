@@ -1,7 +1,6 @@
 #include "renderer.h"
 
 
-UINT8 back_fill_bitmap[MOUSE_LENGTH];
 
 void render(UINT32 *base, Model model) {
     
