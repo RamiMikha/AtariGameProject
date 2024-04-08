@@ -2,7 +2,7 @@
 UINT8 back_buffer[BACK_BUFFER];
 
 int quit = 0;
-
+int final_score = 0;
 UINT32 get_time() {
     long *timer = (long *)TIMER_MEMORY_ADDRESS;
     long timeNow;
@@ -67,19 +67,22 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
             }
 
             if (collision(&model.bird, &model.pipe)){
+                final_score = model.score.value;
+
                 quit = 1;
             }
             update_music(timeElapsed);
         }
         timeThen = timeNow;
-    }
+    }                
+
 }
 
 void load_splash_screen(UINT32 *base) {
     int input = 0;
     int start = 0;
     render_splash_screen(base);
-    while(!start){
+    while(!start && !quit){
         if(key_buffer_head != key_buffer_tail){
             input = dequeue_key();
             if (input == SPACEASCII){
@@ -97,11 +100,43 @@ void load_splash_screen(UINT32 *base) {
                     start = 1;
 
             } 
-            else if(mouse_x_value >= SPLASH_QUIT_BUTTON_X && mouse_x_value <= SPLASH_QUIT_BUTTON_X + SPLASH_BUTTONS_WIDTH 
+            if(mouse_x_value >= SPLASH_QUIT_BUTTON_X && mouse_x_value <= SPLASH_QUIT_BUTTON_X + SPLASH_BUTTONS_WIDTH 
                 && mouse_y_value >= SPLASH_QUIT_BUTTON_Y && mouse_y_value <= SPLASH_QUIT_BUTTON_Y + FONT_LENGTH){
-                    if(mouse_button_state == LEFT_BUTTON_PRESS){
-                        quit = 1;
-                    }
+                    quit = 1;
+
+            }
+        
+    }
+}
+
+void load_end_screen(UINT32 *base, Score *score) {
+    int input = 0;
+    int start = 0;
+    quit = 0;
+    score->value = final_score;
+    render_end_screen(base, score);
+    while(!start && !quit){
+        if(key_buffer_head != key_buffer_tail){
+            input = dequeue_key();
+            if (input == SPACEASCII){
+                start = 1;
+            }
+        }
+        if (mouse_x_value != mouse_x_prev || mouse_y_value != mouse_y_prev){
+            render_mouse(base);
+        }
+
+            /*Does not check for mouse button click
+            when check was added it did not work*/
+            if(mouse_x_value >= SPLASH_PLAY_BUTTON_X && mouse_x_value <= SPLASH_PLAY_BUTTON_X + SPLASH_BUTTONS_WIDTH 
+                && mouse_y_value >= SPLASH_PLAY_BUTTON_Y && mouse_y_value <= SPLASH_PLAY_BUTTON_Y + FONT_LENGTH){
+                    start = 1;
+
+            } 
+            if(mouse_x_value >= SPLASH_QUIT_BUTTON_X && mouse_x_value <= SPLASH_QUIT_BUTTON_X + SPLASH_BUTTONS_WIDTH 
+                && mouse_y_value >= SPLASH_QUIT_BUTTON_Y && mouse_y_value <= SPLASH_QUIT_BUTTON_Y + FONT_LENGTH){
+                    quit = 1;
+
             }
         
     }
@@ -119,16 +154,25 @@ int main() {
     disable_midi_interrupt();
     load_splash_screen(base);
     
-    /*Setting up initial frame*/
-    clear_screen(base);
-    bird_spawn(&model.bird);
-    pipe_spawn(&model.pipe);
-    render(base, model);
-    render(back_base, model);
+    while(!quit){
+        /*Setting up initial frame*/
+        clear_screen(base);
+        bird_spawn(&model.bird);
+        pipe_spawn(&model.pipe);
+        render(base, model);
+        render(back_base, model);
 
-    start_music();
-    run_game(base, back_base, timeThen, timeNow, timeElapsed, model);
-    stop_sound();
+
+        start_music();
+        run_game(base, back_base, timeThen, timeNow, timeElapsed, model);
+        stop_sound();
+        clear_screen(base);
+        clear_screen(back_base);
+        load_end_screen(base, &model.score);
+        model.score.value = 0;
+    }
+    clear_screen(base);
+
     enable_midi_interrupt();
     install_vector(IKBD, orig_vector);
     return 0;

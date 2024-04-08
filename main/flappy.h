@@ -26,4 +26,5 @@ void run_game(UINT32 *base, UINT32 *back_base, UINT32 timeThen, UINT32 timeNow, 
 
 void load_splash_screen(UINT32 *base);
 
+void load_end_screen(UINT32 *base, Score *score); 
 #endif
