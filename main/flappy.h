@@ -1,3 +1,11 @@
+/*------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+Team Members: Rami Mikha & Jarod Dacocos
+
+This file is the main source file for the game. It orchestrates
+the entire Flappy Bird game, from initialization to gameplay and
+termination, bu managing input, rendering, and game logic
+------------------------------------------------------------*/ 
+
 #include "..\renderer\renderer.h"
 #include "..\events\events.h"
 #include "..\raster\types.h"
